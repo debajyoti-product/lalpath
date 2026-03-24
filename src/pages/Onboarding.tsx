@@ -1,14 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Watch, Upload, FileText } from "lucide-react";
-
-const devices = [
-  { name: "boAt", icon: "⌚" },
-  { name: "Noise", icon: "⌚" },
-  { name: "Apple Watch", icon: "⌚" },
-  { name: "Samsung", icon: "⌚" },
-];
+import { FileText, Smartphone } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 
 const sleepOptions = ["Great", "Okay", "Poor"];
 const stressOptions = ["Low", "Moderate", "High"];
@@ -16,7 +10,7 @@ const checkupOptions = ["< 3 months", "3–6 months", "> 6 months"];
 
 const Onboarding = () => {
   const [step, setStep] = useState(0);
-  const [selectedDevice, setSelectedDevice] = useState<string | null>(null);
+  const [healthAccess, setHealthAccess] = useState(false);
   const navigate = useNavigate();
 
   const next = () => {
@@ -25,7 +19,8 @@ const Onboarding = () => {
   };
 
   return (
-    <div className="min-h-screen max-w-[390px] mx-auto flex flex-col"
+    <div
+      className="min-h-screen max-w-[390px] mx-auto flex flex-col"
       style={{ background: "linear-gradient(180deg, hsl(28 60% 92%) 0%, hsl(36 33% 97%) 100%)" }}
     >
       {/* Progress pills */}
@@ -51,25 +46,25 @@ const Onboarding = () => {
               className="flex-1 flex flex-col"
             >
               <h1 className="font-display text-3xl font-semibold text-foreground leading-tight mb-2">
-                Your health, finally making sense.
+                Connect your health data
               </h1>
-              <p className="text-sm text-muted-foreground mb-8">Connect your wearable to get started.</p>
+              <p className="text-sm text-muted-foreground mb-8">
+                This will help us track your daily progress.
+              </p>
 
-              <div className="grid grid-cols-2 gap-3 mb-auto">
-                {devices.map((d) => (
-                  <button
-                    key={d.name}
-                    onClick={() => setSelectedDevice(d.name)}
-                    className={`flex flex-col items-center gap-2 p-5 rounded-card border-2 transition-all ${
-                      selectedDevice === d.name
-                        ? "border-primary bg-accent shadow-card"
-                        : "border-border bg-card"
-                    }`}
-                  >
-                    <span className="text-3xl">{d.icon}</span>
-                    <span className="text-sm font-medium text-foreground">{d.name}</span>
-                  </button>
-                ))}
+              <div className="flex-1 flex flex-col items-center justify-center gap-6">
+                <div className="w-20 h-20 rounded-full bg-accent flex items-center justify-center">
+                  <Smartphone size={36} className="text-primary" />
+                </div>
+                <div className="w-full bg-card rounded-card p-5 shadow-card flex items-center justify-between gap-4">
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-foreground">Enable to give us access</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      Connects to Apple Health / Google Fit
+                    </p>
+                  </div>
+                  <Switch checked={healthAccess} onCheckedChange={setHealthAccess} />
+                </div>
               </div>
             </motion.div>
           )}
@@ -83,9 +78,11 @@ const Onboarding = () => {
               className="flex-1 flex flex-col"
             >
               <h2 className="font-display text-2xl font-semibold text-foreground mb-2">
-                Upload your last blood report
+                Upload your health documents
               </h2>
-              <p className="text-sm text-muted-foreground mb-8">We'll extract key markers automatically.</p>
+              <p className="text-sm text-muted-foreground mb-8">
+                This includes prescriptions, blood reports etc.
+              </p>
 
               <div className="flex-1 flex items-center justify-center">
                 <div className="w-full border-2 border-dashed border-primary/40 rounded-card p-10 flex flex-col items-center gap-3 bg-accent/50">
