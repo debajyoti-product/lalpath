@@ -193,7 +193,7 @@ const Chat = () => {
                   
                   {msg.sender === "ai" && index === messages.length - 1 && (
                     <div className="flex flex-wrap gap-2 mt-4">
-                      {query === "book_test" && ["Blood sugar test", "Heart health test", "Full body checkup"].map(pill => (
+                      {query === "book_test" && ["Blood sugar test", "Heart health test", "Full body checkup", "Lipid profile"].map(pill => (
                         <button 
                           key={pill} 
                           onClick={() => {
@@ -206,7 +206,7 @@ const Chat = () => {
                           {pill}
                         </button>
                       ))}
-                      {query === "consult_doctor" && ["Cold & cough", "Fever", "Sore throat", "Body ache"].map(pill => (
+                      {query === "consult_doctor" && ["Cold & cough", "Fever", "Sore throat", "Body ache", "Upset stomach"].map(pill => (
                         <button 
                           key={pill} 
                           onClick={() => setInput(pill)} 
