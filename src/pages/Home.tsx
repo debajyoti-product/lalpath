@@ -1,17 +1,15 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import BottomNav from "@/components/BottomNav";
-import { ArrowUpRight } from "lucide-react";
+import { Droplets, TrendingUp, ChevronRight, ArrowRight } from "lucide-react";
 
 import hba1cImg from "@/assets/content/hba1c.jpg";
 import metforminImg from "@/assets/content/metformin.jpg";
 import cholesterolImg from "@/assets/content/cholesterol.jpg";
 
 import {
-  ChatIllustration,
-  HealthIllustration,
-  PrescriptionIllustration,
   ConsultIllustration,
+  HealthIllustration,
 } from "@/components/illustrations";
 
 const Home = () => {
@@ -47,114 +45,99 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Hero Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="mb-10 relative overflow-hidden rounded-[32px] shadow-card bg-gradient-to-br from-primary to-[hsl(20,80%,55%)] p-6 flex flex-col items-start"
-        >
-          <div className="text-white/60 text-[11px] uppercase tracking-[0.2em] font-medium mb-3">
-            AI Insight
-          </div>
-          <h2 className="font-display text-2xl text-white font-medium mb-2">
-            Your cholesterol needs attention
-          </h2>
-          <p className="text-white/80 text-sm leading-relaxed mb-6">
-            Your recent LDL levels are slightly elevated. We've prepared a personalized plan to help you manage it naturally.
-          </p>
-          <button 
-            onClick={() => navigate("/chat?context=cholesterol")}
-            className="bg-white text-primary rounded-full px-6 py-3 text-sm font-semibold shadow-sm transition-transform active:scale-[0.98]"
-          >
-            View Recommendations
-          </button>
-        </motion.div>
-
-        {/* Module Grid (2x2) */}
+        {/* What brings you here today? */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="show"
           className="mb-10"
         >
-          <h2 className="text-lg font-medium text-foreground mb-4 px-1">Explore</h2>
-          <div className="grid grid-cols-2 gap-4">
+          <h2 className="text-lg font-medium text-foreground mb-1 px-1">What brings you here today?</h2>
+          <p className="text-sm text-muted-foreground mb-4 px-1">I want to</p>
+          <div className="grid grid-cols-2 gap-3">
             <motion.div
               variants={itemVariant}
               onClick={() => navigate("/chat")}
-              className="bg-card rounded-card shadow-card p-5 relative overflow-hidden min-h-[160px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98]"
+              className="bg-card rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98]"
             >
-              <div>
-                <h3 className="text-sm font-semibold text-foreground">Chat</h3>
-                <p className="text-xs text-muted-foreground mt-1">Ask anything</p>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-foreground flex items-center justify-center mt-4">
-                <ArrowUpRight className="w-4 h-4 text-background" />
-              </div>
-              <div className="absolute bottom-[-8px] right-[-8px] opacity-80">
-                <ChatIllustration />
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={itemVariant}
-              onClick={() => navigate("/profile")}
-              className="bg-card rounded-card shadow-card p-5 relative overflow-hidden min-h-[160px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98]"
-            >
-              <div>
-                <h3 className="text-sm font-semibold text-foreground">Health Profile</h3>
-                <p className="text-xs text-muted-foreground mt-1">Lab reports & biomarkers</p>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-foreground flex items-center justify-center mt-4">
-                <ArrowUpRight className="w-4 h-4 text-background" />
-              </div>
-              <div className="absolute bottom-[-8px] right-[-8px] opacity-80">
-                <HealthIllustration />
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={itemVariant}
-              onClick={() => navigate("/chat?context=metformin")}
-              className="bg-card rounded-card shadow-card p-5 relative overflow-hidden min-h-[160px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98]"
-            >
-              <div>
-                <h3 className="text-sm font-semibold text-foreground">Prescriptions</h3>
-                <p className="text-xs text-muted-foreground mt-1">Medication info</p>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-foreground flex items-center justify-center mt-4">
-                <ArrowUpRight className="w-4 h-4 text-background" />
-              </div>
-              <div className="absolute bottom-[-8px] right-[-8px] opacity-80">
-                <PrescriptionIllustration />
+              <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">Consult a doctor</h3>
+              <div className="absolute bottom-[-4px] right-[-4px] opacity-70">
+                <ConsultIllustration className="w-[72px] h-[72px]" />
               </div>
             </motion.div>
 
             <motion.div
               variants={itemVariant}
               onClick={() => navigate("/book-test")}
-              className="bg-card rounded-card shadow-card p-5 relative overflow-hidden min-h-[160px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98]"
+              className="bg-card rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98]"
             >
-              <div>
-                <h3 className="text-sm font-semibold text-foreground">Book a Consult</h3>
-                <p className="text-xs text-muted-foreground mt-1">See a specialist</p>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-foreground flex items-center justify-center mt-4">
-                <ArrowUpRight className="w-4 h-4 text-background" />
-              </div>
-              <div className="absolute bottom-[-8px] right-[-8px] opacity-80">
-                <ConsultIllustration />
+              <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">Book checkup</h3>
+              <div className="absolute bottom-[-4px] right-[-4px] opacity-70">
+                <HealthIllustration className="w-[72px] h-[72px]" />
               </div>
             </motion.div>
           </div>
+        </motion.div>
+
+        {/* Insights Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25 }}
+          className="mb-10"
+        >
+          <h2 className="text-lg font-medium text-foreground mb-4 px-1">Insights</h2>
+          <div className="space-y-3 mb-5">
+            {/* LDL High */}
+            <div className="bg-card rounded-card shadow-card p-4 flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center shrink-0">
+                <TrendingUp className="w-5 h-5 text-rose-600 dark:text-rose-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-foreground">LDL Cholesterol</p>
+                <p className="text-xs text-muted-foreground mt-0.5">110 mg/dL · <span className="text-rose-600 dark:text-rose-400 font-medium">High</span></p>
+              </div>
+              <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />
+            </div>
+
+            {/* Blood Sugar Optimal */}
+            <div className="bg-card rounded-card shadow-card p-4 flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center shrink-0">
+                <Droplets className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-foreground">Fasting Blood Sugar</p>
+                <p className="text-xs text-muted-foreground mt-0.5">95 mg/dL · <span className="text-emerald-600 dark:text-emerald-400 font-medium">Optimal</span></p>
+              </div>
+              <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />
+            </div>
+
+            {/* Vitamin D Low */}
+            <div className="bg-card rounded-card shadow-card p-4 flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center shrink-0">
+                <Droplets className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-foreground">Vitamin D</p>
+                <p className="text-xs text-muted-foreground mt-0.5">18 ng/mL · <span className="text-amber-600 dark:text-amber-400 font-medium">Low</span></p>
+              </div>
+              <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />
+            </div>
+          </div>
+
+          <button
+            onClick={() => navigate("/profile")}
+            className="w-full bg-primary text-white text-sm font-semibold py-3.5 rounded-full shadow-md shadow-primary/20 transition-transform active:scale-[0.98] flex items-center justify-center gap-2"
+          >
+            Check Insights <ArrowRight className="w-4 h-4" />
+          </button>
         </motion.div>
 
         {/* Personalized Content Cards */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.4 }}
           className="mb-10"
         >
           <h2 className="text-lg font-medium text-foreground mb-4 px-1">For You</h2>

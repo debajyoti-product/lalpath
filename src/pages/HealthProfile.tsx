@@ -121,8 +121,8 @@ const HealthProfile = () => {
          <div className="max-w-[390px] mx-auto flex flex-row gap-3 pointer-events-auto">
            <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
              <DrawerTrigger asChild>
-               <button className="flex-1 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 text-sm font-semibold py-4 rounded-[20px] border border-zinc-200 dark:border-white/10 shadow-md shadow-zinc-200/50 dark:shadow-black/20 transition-transform active:scale-[0.98] flex items-center justify-center gap-2">
-                 <Plus className="w-4 h-4" /> Log Data
+               <button className="flex-1 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 text-sm font-semibold py-4 rounded-full border border-zinc-200 dark:border-white/10 shadow-md shadow-zinc-200/50 dark:shadow-black/20 transition-transform active:scale-[0.98] flex items-center justify-center">
+                 Log Data
                </button>
              </DrawerTrigger>
              <DrawerContent className="bg-[#F9F7F5] dark:bg-zinc-950 border-t border-zinc-200 dark:border-white/10">
@@ -177,8 +177,8 @@ const HealthProfile = () => {
               </DrawerContent>
            </Drawer>
 
-           <button className="flex-1 bg-amber-600 text-white text-sm font-semibold py-4 rounded-[20px] shadow-md shadow-amber-600/30 transition-transform active:scale-[0.98] flex items-center justify-center gap-2">
-             <FileUp className="w-4 h-4" /> Upload report
+           <button className="flex-1 bg-amber-600 text-white text-sm font-semibold py-4 rounded-full shadow-md shadow-amber-600/30 transition-transform active:scale-[0.98] flex items-center justify-center">
+             Upload report
            </button>
          </div>
       </div>
