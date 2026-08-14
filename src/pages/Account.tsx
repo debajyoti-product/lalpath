@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import BottomNav from "@/components/BottomNav";
-import { CreditCard, Gift, Users, ChevronRight, Stethoscope, Syringe } from "lucide-react";
+import { CreditCard, Gift, Users, ChevronRight, Stethoscope, Syringe, Camera, FileText, Activity, Edit2 } from "lucide-react";
 
 const Account = () => {
   return (
@@ -13,54 +13,44 @@ const Account = () => {
           Account
         </h1>
 
-        {/* Credit Wallet */}
+        {/* Profile Card */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100 mb-4 px-1">Your Wallet</h3>
+          <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100 mb-4 px-1">Your profile</h3>
           
-          <div className="space-y-4">
-            {/* Free Consult Card */}
-            <div className="relative overflow-hidden rounded-[24px] group">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-500 to-amber-600" />
-              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 mix-blend-overlay" />
-              <div className="relative p-6">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
-                    <Stethoscope className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="bg-white/20 text-white text-xs font-medium px-2.5 py-1 rounded-full backdrop-blur-sm">
-                    1 Available
-                  </span>
+          <div className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-[24px] shadow-sm p-5 border border-border/50 relative overflow-hidden">
+            <div className="flex items-center gap-5 mb-5">
+              
+              {/* Profile Image with Edit Button */}
+              <div className="relative">
+                <div className="w-20 h-20 rounded-full border-2 border-white dark:border-zinc-800 overflow-hidden shadow-sm bg-orange-50">
+                  <img 
+                    src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg" 
+                    alt="Profile" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div>
-                  <h4 className="text-xl font-semibold text-white mb-1">Free GP/SP Consult</h4>
-                  <p className="text-sm text-amber-100">Valid for any specialist in network</p>
+                <button className="absolute bottom-0 right-0 w-7 h-7 bg-primary text-white rounded-full flex items-center justify-center shadow-md border-2 border-white dark:border-zinc-900 transition-transform active:scale-95">
+                  <Camera className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              {/* Info */}
+              <div className="flex-1">
+                <h4 className="text-xl font-semibold text-foreground tracking-tight">Debajyoti</h4>
+                <div className="flex flex-col gap-0.5 mt-1">
+                  <p className="text-[13px] text-muted-foreground font-medium">Male, 28</p>
+                  <p className="text-[13px] text-muted-foreground font-medium">+91 9876543210</p>
                 </div>
               </div>
             </div>
 
-            {/* 50% Test Discount Card */}
-            <div className="relative overflow-hidden rounded-[24px] group">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-emerald-600" />
-              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 mix-blend-overlay" />
-              <div className="relative p-6">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
-                    <Syringe className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="bg-white/20 text-white text-xs font-medium px-2.5 py-1 rounded-full backdrop-blur-sm">
-                    Active
-                  </span>
-                </div>
-                <div>
-                  <h4 className="text-xl font-semibold text-white mb-1">50% Off First Test</h4>
-                  <p className="text-sm text-emerald-100">Applies automatically at checkout</p>
-                </div>
-              </div>
-            </div>
+            <button className="w-full bg-white/60 dark:bg-white/5 border border-border/50 text-foreground font-semibold py-3 rounded-full shadow-sm flex items-center justify-center gap-2 transition-transform active:scale-[0.98]">
+              <Edit2 className="w-4 h-4" /> Edit Profile
+            </button>
           </div>
         </motion.div>
 
@@ -74,19 +64,17 @@ const Account = () => {
           <div className="divide-y divide-zinc-200 dark:divide-white/10">
             <button className="w-full flex items-center justify-between p-5 hover:bg-white/40 dark:hover:bg-white/5 transition-colors">
               <div className="flex items-center gap-3">
-                 <CreditCard className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-                 <span className="text-base font-medium text-zinc-900 dark:text-zinc-100">Payment Methods</span>
+                 <FileText className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+                 <span className="text-base font-medium text-zinc-900 dark:text-zinc-100">Health documents</span>
               </div>
               <ChevronRight className="w-5 h-5 text-zinc-400" />
             </button>
             <button className="w-full flex items-center justify-between p-5 hover:bg-white/40 dark:hover:bg-white/5 transition-colors">
               <div className="flex items-center gap-3">
-                 <Gift className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-                 <span className="text-base font-medium text-zinc-900 dark:text-zinc-100">Subscription Status</span>
+                 <Activity className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+                 <span className="text-base font-medium text-zinc-900 dark:text-zinc-100">Health logs</span>
               </div>
-              <span className="text-sm text-zinc-500 dark:text-zinc-400 flex items-center gap-2">
-                 Free <ChevronRight className="w-5 h-5" />
-              </span>
+              <ChevronRight className="w-5 h-5 text-zinc-400" />
             </button>
             <button className="w-full flex items-center justify-between p-5 hover:bg-white/40 dark:hover:bg-white/5 transition-colors">
               <div className="flex items-center gap-3">
