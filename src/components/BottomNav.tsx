@@ -1,6 +1,6 @@
 import { Home, HeartPulse, User } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ChatStarIcon = ({ size = 22, className = "", strokeWidth = 1.8 }: { size?: number, className?: string, strokeWidth?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -10,7 +10,7 @@ const ChatStarIcon = ({ size = 22, className = "", strokeWidth = 1.8 }: { size?:
 
 const tabs = [
   { icon: Home, label: "Home", path: "/home" },
-  { icon: ChatStarIcon, label: "Chat", path: "/chat" },
+  { icon: ChatStarIcon, label: "welUp AI", path: "/chat" },
   { icon: HeartPulse, label: "Health", path: "/profile" },
   { icon: User, label: "Account", path: "/account" },
 ];
@@ -28,7 +28,7 @@ const BottomNav = () => {
             <button
               key={path}
               onClick={() => navigate(path)}
-              className="relative flex flex-col items-center gap-1 py-2 px-1 transition-colors w-16"
+              className="relative flex items-center justify-center py-2.5 px-3 transition-all"
             >
               {active && (
                 <motion.div
@@ -37,14 +37,35 @@ const BottomNav = () => {
                   transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                 />
               )}
-              <Icon 
-                size={22} 
-                className={`relative z-10 transition-colors ${active ? "text-primary" : "text-muted-foreground"}`} 
-                strokeWidth={active ? 2.5 : 1.8} 
-              />
-              <span className={`text-[10px] font-medium relative z-10 transition-colors ${active ? "text-primary" : "text-muted-foreground"}`}>
-                {label}
-              </span>
+              <AnimatePresence mode="wait" initial={false}>
+                {active ? (
+                  <motion.span
+                    key="label"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                    className="relative z-10 text-[13px] font-semibold text-primary"
+                  >
+                    {label}
+                  </motion.span>
+                ) : (
+                  <motion.div
+                    key="icon"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                    className="relative z-10"
+                  >
+                    <Icon
+                      size={22}
+                      className="text-muted-foreground"
+                      strokeWidth={1.8}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </button>
           );
         })}
