@@ -58,10 +58,12 @@ const Home = () => {
             <motion.div
               variants={itemVariant}
               onClick={() => navigate("/chat")}
-              className="bg-card rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98]"
+              className="bg-card rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
             >
-              <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">Consult a doctor</h3>
-              <div className="absolute bottom-[-4px] right-[-4px] opacity-70">
+              <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">
+                Consult a<br/><span className="text-[15px] block mt-0.5">doctor</span>
+              </h3>
+              <div className="absolute bottom-[-8px] right-[-12px] opacity-90 -rotate-12 drop-shadow-lg scale-110">
                 <ConsultIllustration className="w-[72px] h-[72px]" />
               </div>
             </motion.div>
@@ -69,10 +71,12 @@ const Home = () => {
             <motion.div
               variants={itemVariant}
               onClick={() => navigate("/book-test")}
-              className="bg-card rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98]"
+              className="bg-card rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
             >
-              <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">Book checkup</h3>
-              <div className="absolute bottom-[-4px] right-[-4px] opacity-70">
+              <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">
+                Book<br/><span className="text-[15px] block mt-0.5">checkup</span>
+              </h3>
+              <div className="absolute bottom-[-8px] right-[-12px] opacity-90 rotate-12 drop-shadow-lg scale-110">
                 <HealthIllustration className="w-[72px] h-[72px]" />
               </div>
             </motion.div>
@@ -87,9 +91,9 @@ const Home = () => {
           className="mb-10"
         >
           <h2 className="text-lg font-medium text-foreground mb-4 px-1">Insights</h2>
-          <div className="space-y-3 mb-5">
+          <div className="flex gap-3 overflow-x-auto pb-5 -mx-5 px-5 scrollbar-hide snap-x snap-mandatory">
             {/* LDL High */}
-            <div className="bg-card rounded-card shadow-card p-4 flex items-center gap-3.5">
+            <div className="min-w-[200px] shrink-0 snap-start bg-card rounded-card shadow-card border border-border/50 p-4 flex flex-col gap-3">
               <div className="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center shrink-0">
                 <TrendingUp className="w-5 h-5 text-rose-600 dark:text-rose-400" />
               </div>
@@ -97,11 +101,10 @@ const Home = () => {
                 <p className="text-sm font-semibold text-foreground">LDL Cholesterol</p>
                 <p className="text-xs text-muted-foreground mt-0.5">110 mg/dL · <span className="text-rose-600 dark:text-rose-400 font-medium">High</span></p>
               </div>
-              <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />
             </div>
 
             {/* Blood Sugar Optimal */}
-            <div className="bg-card rounded-card shadow-card p-4 flex items-center gap-3.5">
+            <div className="min-w-[200px] shrink-0 snap-start bg-card rounded-card shadow-card border border-border/50 p-4 flex flex-col gap-3">
               <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center shrink-0">
                 <Droplets className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
               </div>
@@ -109,11 +112,10 @@ const Home = () => {
                 <p className="text-sm font-semibold text-foreground">Fasting Blood Sugar</p>
                 <p className="text-xs text-muted-foreground mt-0.5">95 mg/dL · <span className="text-emerald-600 dark:text-emerald-400 font-medium">Optimal</span></p>
               </div>
-              <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />
             </div>
 
             {/* Vitamin D Low */}
-            <div className="bg-card rounded-card shadow-card p-4 flex items-center gap-3.5">
+            <div className="min-w-[200px] shrink-0 snap-start bg-card rounded-card shadow-card border border-border/50 p-4 flex flex-col gap-3">
               <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center shrink-0">
                 <Droplets className="w-5 h-5 text-amber-600 dark:text-amber-400" />
               </div>
@@ -121,7 +123,6 @@ const Home = () => {
                 <p className="text-sm font-semibold text-foreground">Vitamin D</p>
                 <p className="text-xs text-muted-foreground mt-0.5">18 ng/mL · <span className="text-amber-600 dark:text-amber-400 font-medium">Low</span></p>
               </div>
-              <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />
             </div>
           </div>
 
