@@ -34,6 +34,7 @@ const AssistantStar = () => (
 const Chat = () => {
   const [searchParams] = useSearchParams();
   const context = searchParams.get("context");
+  const query = searchParams.get("query");
   const navigate = useNavigate();
   
   const [messages, setMessages] = useState<Message[]>([]);
@@ -41,7 +42,6 @@ const Chat = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const query = searchParams.get("query");
     
     // Initialize based on context
     if (context === "high_sugar") {
@@ -174,7 +174,7 @@ const Chat = () => {
             </motion.div>
           )}
 
-          {messages.map((msg) => (
+          {messages.map((msg, index) => (
             <motion.div
               key={msg.id}
               initial={{ opacity: 0, y: 10 }}
@@ -191,23 +191,30 @@ const Chat = () => {
                 >
                   <p className="text-[15px] leading-[1.75]">{msg.text}</p>
                   
-                  {msg.sender === "ai" && (
-                    <div className="flex items-center gap-5 mt-2">
-                      <button className="text-muted-foreground hover:text-foreground transition-colors">
-                        <ThumbsUp className="w-4 h-4" />
-                      </button>
-                      <button className="text-muted-foreground hover:text-foreground transition-colors">
-                        <ThumbsDown className="w-4 h-4" />
-                      </button>
-                      <button className="text-muted-foreground hover:text-foreground transition-colors">
-                        <Copy className="w-4 h-4" />
-                      </button>
-                      <button className="text-muted-foreground hover:text-foreground transition-colors">
-                        <Info className="w-4 h-4" />
-                      </button>
-                      <button className="text-muted-foreground hover:text-foreground transition-colors">
-                        <Share2 className="w-4 h-4" />
-                      </button>
+                  {msg.sender === "ai" && index === messages.length - 1 && (
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {query === "book_test" && ["Blood sugar test", "Heart health test", "Full body checkup"].map(pill => (
+                        <button 
+                          key={pill} 
+                          onClick={() => {
+                            setInput(pill);
+                            // We don't auto-send here, just populate input so user can edit, or we could handleSend.
+                            // Better UX is to let them send it or auto-send. I'll just populate.
+                          }} 
+                          className="text-xs font-medium bg-primary/10 text-primary px-3 py-1.5 rounded-full border border-primary/20 hover:bg-primary/20 transition-colors"
+                        >
+                          {pill}
+                        </button>
+                      ))}
+                      {query === "consult_doctor" && ["Cold & cough", "Fever", "Sore throat", "Body ache"].map(pill => (
+                        <button 
+                          key={pill} 
+                          onClick={() => setInput(pill)} 
+                          className="text-xs font-medium bg-primary/10 text-primary px-3 py-1.5 rounded-full border border-primary/20 hover:bg-primary/20 transition-colors"
+                        >
+                          {pill}
+                        </button>
+                      ))}
                     </div>
                   )}
                 </div>
