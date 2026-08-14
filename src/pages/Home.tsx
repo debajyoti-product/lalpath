@@ -35,16 +35,10 @@ const Home = () => {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-10 flex items-start justify-between"
+          className="mb-10"
         >
-          <div>
-            <p className="text-sm text-muted-foreground font-medium">Good morning,</p>
-            <h1 className="text-4xl font-semibold text-foreground tracking-tight">Debajyoti</h1>
-          </div>
-          <button className="mt-1 flex items-center gap-1.5 bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 border border-amber-200/80 dark:border-amber-700/40 text-amber-800 dark:text-amber-300 text-xs font-semibold px-3.5 py-2 rounded-full shadow-sm transition-transform active:scale-95">
-            <Gift className="w-3.5 h-3.5" />
-            Refer & Earn
-          </button>
+          <p className="text-sm text-muted-foreground font-medium">Good morning,</p>
+          <h1 className="text-4xl font-semibold text-foreground tracking-tight">Debajyoti</h1>
         </motion.div>
 
         {/* What brings you here today? */}
