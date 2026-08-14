@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import BottomNav from "@/components/BottomNav";
-import { Droplets, TrendingUp, ChevronRight, ArrowRight } from "lucide-react";
+import { Droplets, TrendingUp, ChevronRight, ArrowRight, FileText, X } from "lucide-react";
 
 import hba1cImg from "@/assets/content/hba1c.jpg";
 import metforminImg from "@/assets/content/metformin.jpg";
@@ -86,48 +86,68 @@ const Home = () => {
           transition={{ delay: 0.25 }}
           className="mb-10"
         >
-          <h2 className="text-xl font-bold text-foreground mb-4 px-1">Know your <span className="italic font-normal">health</span> better</h2>
-          <div className="grid grid-cols-3 gap-2.5 mb-5">
-            {/* LDL High */}
-            <div className="bg-card rounded-[20px] shadow-sm border border-border/50 p-3 flex flex-col items-center text-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-rose-600 dark:text-rose-400" />
+          <div className="bg-card dark:bg-zinc-900 border border-border/50 rounded-[24px] p-4 shadow-sm relative">
+            
+            {/* Header row */}
+            <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-muted/60 flex items-center justify-center shrink-0">
+                  <FileText className="w-5 h-5 text-muted-foreground" />
+                </div>
+                <div>
+                  <h3 className="text-[15px] font-medium text-foreground leading-tight">report.pdf</h3>
+                  <p className="text-[12px] text-muted-foreground mt-0.5">
+                    Test date: <span className="font-semibold text-foreground">10-06-2026</span>
+                  </p>
+                </div>
               </div>
-              <div className="w-full">
-                <p className="text-[12px] font-semibold text-foreground leading-tight">LDL</p>
-                <p className="text-[11px] text-rose-600 dark:text-rose-400 font-medium mt-0.5">High</p>
+              <button className="w-8 h-8 rounded-full bg-muted/60 flex items-center justify-center transition-transform active:scale-95 shrink-0">
+                <X className="w-4 h-4 text-muted-foreground" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-3 gap-2.5 mb-5">
+              {/* LDL High */}
+              <div className="bg-background rounded-[20px] shadow-sm border border-border/50 p-3 flex flex-col items-center text-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-rose-600 dark:text-rose-400" />
+                </div>
+                <div className="w-full">
+                  <p className="text-[12px] font-semibold text-foreground leading-tight">LDL</p>
+                  <p className="text-[11px] text-rose-600 dark:text-rose-400 font-medium mt-0.5">High</p>
+                </div>
+              </div>
+
+              {/* HbA1c Optimal */}
+              <div className="bg-background rounded-[20px] shadow-sm border border-border/50 p-3 flex flex-col items-center text-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+                  <Droplets className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                </div>
+                <div className="w-full">
+                  <p className="text-[12px] font-semibold text-foreground leading-tight">HbA1c</p>
+                  <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium mt-0.5">Optimal</p>
+                </div>
+              </div>
+
+              {/* Vitamin D Low */}
+              <div className="bg-background rounded-[20px] shadow-sm border border-border/50 p-3 flex flex-col items-center text-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
+                  <Droplets className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                </div>
+                <div className="w-full">
+                  <p className="text-[12px] font-semibold text-foreground leading-tight">Vit. D</p>
+                  <p className="text-[11px] text-amber-600 dark:text-amber-400 font-medium mt-0.5">Low</p>
+                </div>
               </div>
             </div>
 
-            {/* HbA1c Optimal */}
-            <div className="bg-card rounded-[20px] shadow-sm border border-border/50 p-3 flex flex-col items-center text-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
-                <Droplets className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-              </div>
-              <div className="w-full">
-                <p className="text-[12px] font-semibold text-foreground leading-tight">HbA1c</p>
-                <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium mt-0.5">Optimal</p>
-              </div>
-            </div>
-
-            {/* Vitamin D Low */}
-            <div className="bg-card rounded-[20px] shadow-sm border border-border/50 p-3 flex flex-col items-center text-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                <Droplets className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-              </div>
-              <div className="w-full">
-                <p className="text-[12px] font-semibold text-foreground leading-tight">Vit. D</p>
-                <p className="text-[11px] text-amber-600 dark:text-amber-400 font-medium mt-0.5">Low</p>
-              </div>
-            </div>
+            <button
+              onClick={() => navigate("/profile")}
+              className="w-full bg-primary text-white text-[15px] font-semibold py-3.5 rounded-full shadow-md shadow-primary/20 transition-transform active:scale-[0.98] flex items-center justify-center gap-2"
+            >
+              Check insights <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
-
-          <button
-            onClick={() => navigate("/profile")}
-            className="w-full bg-primary text-white text-sm font-semibold py-3.5 rounded-full shadow-md shadow-primary/20 transition-transform active:scale-[0.98] flex items-center justify-center gap-2"
-          >
-            Check Insights <ArrowRight className="w-4 h-4" />
-          </button>
         </motion.div>
 
         {/* Personalized Content Cards */}
