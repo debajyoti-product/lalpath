@@ -163,6 +163,7 @@ const HealthProfile = () => {
             Check detail health trends
           </button>
         </div>
+      </div>
 
       <BottomNav />
     </div>
