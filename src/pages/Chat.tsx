@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Send, User as UserIcon, Calendar, CheckCircle2, ThumbsUp, ThumbsDown, Copy, Info, Share2, Plus, Mic, ArrowLeft, Stethoscope, FileText, Pill } from "lucide-react";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import BottomNav from "@/components/BottomNav";
 
 type Message = {
   id: string;
@@ -131,10 +132,8 @@ const Chat = () => {
         <h1 className="text-3xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight">
           WelUp AI
         </h1>
-      </div>
-
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-5 pt-2 pb-32 relative z-10 scroll-smooth">
+      <div className="flex-1 overflow-y-auto px-5 pt-2 pb-44 relative z-10 scroll-smooth">
         <div className="max-w-[390px] mx-auto space-y-6">
           {messages.length === 0 && !context && (
             <motion.div 
@@ -142,7 +141,6 @@ const Chat = () => {
               animate={{ opacity: 1, y: 0 }}
               className="flex flex-col items-start px-2 mt-4"
             >
-              <AssistantStar />
               
               <h2 className="text-[32px] font-medium leading-[1.1] text-foreground tracking-tight mb-2">
                 Hi <span className="font-bold text-primary">Debajyoti!</span><br/>
@@ -255,8 +253,8 @@ const Chat = () => {
       </div>
 
       {/* Input Area */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#F9F7F5] via-[#F9F7F5] to-transparent dark:from-zinc-950 dark:via-zinc-950 z-30">
-        <div className="max-w-[390px] mx-auto relative flex flex-col pb-[env(safe-area-inset-bottom,16px)]">
+      <div className="fixed bottom-[80px] left-0 right-0 p-4 bg-gradient-to-t from-[#F9F7F5] via-[#F9F7F5] to-transparent dark:from-zinc-950 dark:via-zinc-950 z-40">
+        <div className="max-w-[390px] mx-auto relative flex flex-col">
           
           <div className="relative flex items-center bg-card border border-border rounded-full shadow-sm">
             <button className="pl-4 pr-2 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0">
@@ -288,6 +286,8 @@ const Chat = () => {
           </p>
         </div>
       </div>
+
+      <BottomNav />
     </div>
   );
 };
