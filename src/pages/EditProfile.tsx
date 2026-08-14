@@ -21,11 +21,6 @@ const FemaleIcon = () => (
   </svg>
 );
 
-const familyMembers = [
-  { name: "Rina D.", relation: "Mother", avatar: "https://img.freepik.com/free-psd/3d-illustration-person-with-glasses_23-2149436191.jpg" },
-  { name: "Arup D.", relation: "Father", avatar: "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436178.jpg" },
-];
-
 const EditProfile = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("Debajyoti");
@@ -173,39 +168,6 @@ const EditProfile = () => {
               </div>
             </motion.div>
           </div>
-
-          {/* View Family Section */}
-          <motion.div variants={fadeUp} className="mb-8">
-            <h3 className="text-xl font-bold text-foreground mb-4 px-1">View family</h3>
-            <div className="bg-card rounded-[24px] border border-border/50 shadow-sm overflow-hidden">
-              {/* Family member rows */}
-              {familyMembers.map((member, i) => (
-                <div
-                  key={i}
-                  className={`flex items-center gap-4 p-4 ${
-                    i < familyMembers.length - 1 ? "border-b border-border/30" : ""
-                  }`}
-                >
-                  <div className="w-12 h-12 rounded-full overflow-hidden bg-orange-50 border-2 border-white dark:border-zinc-800 shadow-sm shrink-0">
-                    <img src={member.avatar} alt={member.name} className="w-full h-full object-cover" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-[15px] font-semibold text-foreground">{member.name}</p>
-                    <p className="text-[12px] text-muted-foreground font-medium">{member.relation}</p>
-                  </div>
-                  <ChevronRight className="w-5 h-5 text-muted-foreground shrink-0" />
-                </div>
-              ))}
-
-              {/* Add member button */}
-              <button className="w-full flex items-center gap-4 p-4 border-t border-border/30 hover:bg-muted/20 transition-colors">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border-2 border-dashed border-primary/30 shrink-0">
-                  <Plus className="w-5 h-5 text-primary" />
-                </div>
-                <p className="text-[15px] font-semibold text-primary">Add family member</p>
-              </button>
-            </div>
-          </motion.div>
 
           {/* Save Button */}
           <motion.div variants={fadeUp}>

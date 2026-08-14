@@ -50,11 +50,18 @@ const Account = () => {
               </div>
             </div>
 
-            <button 
-              onClick={() => navigate("/edit-profile")}
-              className="w-full bg-white/60 dark:bg-white/5 border border-border/50 text-foreground font-semibold py-3 rounded-full shadow-sm flex items-center justify-center gap-2 transition-transform active:scale-[0.98]">
-              <Edit2 className="w-4 h-4" /> Edit Profile
-            </button>
+            <div className="flex items-center gap-3 w-full">
+              <button 
+                onClick={() => navigate("/edit-profile")}
+                className="flex-1 bg-white/60 dark:bg-white/5 border border-border/50 text-foreground text-sm font-semibold py-3 rounded-full shadow-sm flex items-center justify-center gap-1.5 transition-transform active:scale-[0.98]">
+                <Edit2 className="w-4 h-4" /> Edit Profile
+              </button>
+              <button 
+                onClick={() => navigate("/family")}
+                className="flex-1 bg-primary text-white border border-primary text-sm font-semibold py-3 rounded-full shadow-sm flex items-center justify-center gap-1.5 transition-transform active:scale-[0.98]">
+                <Users className="w-4 h-4" /> View Family
+              </button>
+            </div>
           </div>
         </motion.div>
 
