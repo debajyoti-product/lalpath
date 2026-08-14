@@ -48,13 +48,7 @@ const HealthProfile = () => {
        <div className="absolute top-[10%] right-[-10%] w-[300px] h-[300px] bg-emerald-200/30 dark:bg-emerald-900/20 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="px-5 pt-12 relative z-10 max-w-[390px] mx-auto flex-1 w-full">
-        <div className="flex items-center gap-4 mb-6">
-          <button 
-            onClick={() => navigate("/home")} 
-            className="w-10 h-10 rounded-full bg-white/60 dark:bg-white/5 backdrop-blur-md border border-white/80 dark:border-white/10 flex items-center justify-center shadow-sm transition-transform active:scale-95 shrink-0"
-          >
-            <ArrowLeft className="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
-          </button>
+        <div className="mb-6">
           <h1 className="text-3xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight">
             Health Profile
           </h1>

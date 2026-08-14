@@ -128,7 +128,7 @@ const Chat = () => {
         >
           <ArrowLeft className="w-5 h-5 text-foreground" />
         </button>
-        <h1 className="text-xl font-medium text-foreground tracking-tight">
+        <h1 className="text-3xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight">
           WelUp AI
         </h1>
       </div>
