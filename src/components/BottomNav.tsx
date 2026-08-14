@@ -20,20 +20,20 @@ const BottomNav = () => {
   const location = useLocation();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-2xl border-t border-white/10 dark:border-white/5">
-      <div className="max-w-[390px] mx-auto flex items-center justify-around py-3 pb-[env(safe-area-inset-bottom,16px)]">
+    <div className="fixed left-0 right-0 z-50 flex justify-center px-4 pointer-events-none" style={{ bottom: 'max(24px, env(safe-area-inset-bottom))' }}>
+      <nav className="w-full max-w-[358px] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-3xl border border-white/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.08)] rounded-[32px] flex items-center justify-around p-2 pointer-events-auto">
         {tabs.map(({ icon: Icon, label, path }) => {
           const active = location.pathname === path;
           return (
             <button
               key={path}
               onClick={() => navigate(path)}
-              className="relative flex flex-col items-center gap-1 p-2 transition-colors w-16"
+              className="relative flex flex-col items-center gap-1 py-2 px-1 transition-colors w-16"
             >
               {active && (
                 <motion.div
                   layoutId="bottom-nav-indicator"
-                  className="absolute inset-0 bg-primary/10 rounded-xl"
+                  className="absolute inset-0 bg-primary/15 dark:bg-primary/20 rounded-[20px]"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                 />
               )}
@@ -48,8 +48,8 @@ const BottomNav = () => {
             </button>
           );
         })}
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 };
 
