@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Send, User as UserIcon, Calendar, CheckCircle2, ThumbsUp, ThumbsDown, Copy, Info, Share2, Plus, Mic, ArrowLeft } from "lucide-react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import BottomNav from "@/components/BottomNav";
 
 type Message = {
   id: string;
@@ -12,7 +11,7 @@ type Message = {
 };
 
 const AssistantStar = () => (
-  <svg width="72" height="72" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-2xl scale-110 mb-4">
+  <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-2xl mb-4">
     <defs>
       <linearGradient id="starGrad" x1="20" y1="20" x2="80" y2="80">
         <stop stopColor="hsl(12, 76%, 61%)" />
@@ -112,17 +111,20 @@ const Chat = () => {
       )}
 
       {/* Header */}
-      <div className="pt-12 pb-4 px-6 relative z-20 flex items-center">
+      <div className="pt-12 pb-4 px-6 relative z-20 flex items-center gap-4 bg-[#F9F7F5]/80 dark:bg-zinc-950/80 backdrop-blur-xl border-b border-border">
         <button 
           onClick={() => navigate(-1)} 
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/60 dark:bg-white/5 backdrop-blur-md shadow-sm border border-border transition-transform active:scale-95"
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/60 dark:bg-white/5 backdrop-blur-md shadow-sm border border-border transition-transform active:scale-95 shrink-0"
         >
           <ArrowLeft className="w-5 h-5 text-foreground" />
         </button>
+        <h1 className="text-xl font-medium text-foreground tracking-tight">
+          WelUp AI
+        </h1>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-5 pt-2 pb-44 relative z-10 scroll-smooth">
+      <div className="flex-1 overflow-y-auto px-5 pt-2 pb-32 relative z-10 scroll-smooth">
         <div className="max-w-[390px] mx-auto space-y-6">
           {messages.length === 0 && !context && (
             <motion.div 
@@ -138,9 +140,6 @@ const Chat = () => {
               </h2>
 
               <div className="mt-8">
-                <h3 className="text-[22px] font-bold text-foreground mb-6">
-                  I'm your Health Assistant
-                </h3>
                 <ul className="space-y-4">
                   <li className="flex items-center gap-4 text-[15px] text-foreground font-medium">
                      <div className="w-5 h-5 rounded-full border-[1.5px] border-primary flex items-center justify-center shrink-0 shadow-sm">
@@ -239,8 +238,8 @@ const Chat = () => {
       </div>
 
       {/* Input Area */}
-      <div className="absolute bottom-[env(safe-area-bottom,72px)] left-0 right-0 p-4 bg-gradient-to-t from-[#F9F7F5] via-[#F9F7F5] to-transparent dark:from-zinc-950 dark:via-zinc-950 z-30">
-        <div className="max-w-[390px] mx-auto relative flex flex-col mb-[env(safe-area-inset-bottom,48px)] pb-12">
+      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#F9F7F5] via-[#F9F7F5] to-transparent dark:from-zinc-950 dark:via-zinc-950 z-30">
+        <div className="max-w-[390px] mx-auto relative flex flex-col pb-[env(safe-area-inset-bottom,16px)]">
           
           <div className="relative flex items-center bg-card border border-border rounded-full shadow-sm">
             <button className="pl-4 pr-2 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0">
@@ -272,8 +271,6 @@ const Chat = () => {
           </p>
         </div>
       </div>
-
-      <BottomNav />
     </div>
   );
 };
