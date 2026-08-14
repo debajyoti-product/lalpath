@@ -1,70 +1,87 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { FileText, Smartphone } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
+import { FileText, Stethoscope, Search, FileUp, Sparkles, Activity } from "lucide-react";
 
-const sleepOptions = ["Great", "Okay", "Poor"];
-const stressOptions = ["Low", "Moderate", "High"];
-const checkupOptions = ["< 3 months", "3–6 months", "> 6 months"];
+type Intent = "symptom" | "routine" | "explore" | null;
 
 const Onboarding = () => {
   const [step, setStep] = useState(0);
-  const [healthAccess, setHealthAccess] = useState(false);
+  const [intent, setIntent] = useState<Intent>(null);
   const navigate = useNavigate();
 
-  const next = () => {
+  const handleIntentSelection = (selectedIntent: Intent) => {
+    setIntent(selectedIntent);
+    if (selectedIntent === "symptom") {
+      navigate("/chat");
+    } else {
+      setStep(1); // Proceed to test upload for routine/explore
+    }
+  };
+
+  const nextStep = () => {
     if (step < 2) setStep(step + 1);
     else navigate("/home");
   };
 
+  const skipTestUpload = () => {
+    setStep(2);
+  };
+
   return (
-    <div
-      className="min-h-screen max-w-[390px] mx-auto flex flex-col"
-      style={{ background: "linear-gradient(180deg, hsl(28 60% 92%) 0%, hsl(36 33% 97%) 100%)" }}
-    >
-      {/* Progress pills */}
-      <div className="flex gap-2 px-6 pt-8">
+    <div className="min-h-screen max-w-[390px] mx-auto flex flex-col bg-[#F9F7F5] dark:bg-zinc-950 overflow-hidden relative shadow-2xl">
+      {/* Background Orbs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[300px] h-[300px] bg-amber-200/40 dark:bg-amber-900/30 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[300px] h-[300px] bg-rose-200/40 dark:bg-rose-900/30 blur-[100px] rounded-full pointer-events-none" />
+
+      {/* Header/Progress */}
+      <div className="pt-12 px-6 relative z-10 flex gap-2">
         {[0, 1, 2].map((i) => (
           <div
             key={i}
-            className={`h-1.5 flex-1 rounded-pill transition-colors duration-300 ${
-              i <= step ? "bg-primary" : "bg-border"
+            className={`h-1.5 flex-1 rounded-full transition-all duration-500 ${
+              i <= step ? "bg-amber-600 dark:bg-amber-500" : "bg-black/5 dark:bg-white/10"
             }`}
           />
         ))}
       </div>
 
-      <div className="flex-1 px-6 pt-8 pb-6 flex flex-col">
+      <div className="flex-1 px-6 pt-10 pb-10 flex flex-col relative z-10">
         <AnimatePresence mode="wait">
           {step === 0 && (
             <motion.div
               key="step0"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
               className="flex-1 flex flex-col"
             >
-              <h1 className="font-display text-3xl font-semibold text-foreground leading-tight mb-2">
-                Connect your health data
+              <h1 className="text-3xl font-medium text-zinc-900 dark:text-zinc-50 mb-2 tracking-tight">
+                Why are you here today?
               </h1>
-              <p className="text-sm text-muted-foreground mb-8">
-                This will help us track your daily progress.
+              <p className="text-base text-zinc-500 dark:text-zinc-400 mb-10">
+                Let's get you to the right place.
               </p>
 
-              <div className="flex-1 flex flex-col items-center justify-center gap-6">
-                <div className="w-20 h-20 rounded-full bg-accent flex items-center justify-center">
-                  <Smartphone size={36} className="text-primary" />
-                </div>
-                <div className="w-full bg-card rounded-card p-5 shadow-card flex items-center justify-between gap-4">
-                  <div className="flex-1">
-                    <p className="text-sm font-semibold text-foreground">Enable to give us access</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">
-                      Connects to Apple Health / Google Fit
-                    </p>
-                  </div>
-                  <Switch checked={healthAccess} onCheckedChange={setHealthAccess} />
-                </div>
+              <div className="space-y-4">
+                <IntentCard
+                  icon={<Stethoscope className="text-rose-500" />}
+                  title="I have a symptom"
+                  desc="Chat with our AI to find the right specialist."
+                  onClick={() => handleIntentSelection("symptom")}
+                />
+                <IntentCard
+                  icon={<Activity className="text-emerald-500" />}
+                  title="Routine check-up"
+                  desc="Upload tests or see what you need."
+                  onClick={() => handleIntentSelection("routine")}
+                />
+                <IntentCard
+                  icon={<Search className="text-indigo-500" />}
+                  title="Just exploring"
+                  desc="See what WelUp can do for you."
+                  onClick={() => handleIntentSelection("explore")}
+                />
               </div>
             </motion.div>
           )}
@@ -72,26 +89,46 @@ const Onboarding = () => {
           {step === 1 && (
             <motion.div
               key="step1"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
               className="flex-1 flex flex-col"
             >
-              <h2 className="font-display text-2xl font-semibold text-foreground mb-2">
-                Upload your health documents
-              </h2>
-              <p className="text-sm text-muted-foreground mb-8">
-                This includes prescriptions, blood reports etc.
+              <h1 className="text-3xl font-medium text-zinc-900 dark:text-zinc-50 mb-2 tracking-tight">
+                Got a past test report?
+              </h1>
+              <p className="text-base text-zinc-500 dark:text-zinc-400 mb-10">
+                Upload it now so our AI can start building your health profile.
               </p>
 
-              <div className="flex-1 flex items-center justify-center">
-                <div className="w-full border-2 border-dashed border-primary/40 rounded-card p-10 flex flex-col items-center gap-3 bg-accent/50">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
-                    <FileText size={24} className="text-primary" />
+              <div className="flex-1 flex flex-col items-center justify-center">
+                <div className="w-full relative group cursor-pointer">
+                  <div className="absolute inset-0 bg-white/40 dark:bg-white/5 backdrop-blur-md rounded-[32px] border border-white/60 dark:border-white/10" />
+                  <div className="relative p-12 flex flex-col items-center text-center gap-4">
+                    <div className="w-16 h-16 rounded-full bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center">
+                      <FileUp className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">Upload PDF</h3>
+                      <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Tap to browse files</p>
+                    </div>
                   </div>
-                  <p className="text-sm font-medium text-foreground">Tap to upload PDF</p>
-                  <p className="text-xs text-muted-foreground">or drag & drop here</p>
                 </div>
+              </div>
+
+              <div className="mt-8 space-y-3">
+                <button
+                  onClick={nextStep}
+                  className="w-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-lg font-medium py-4 rounded-[20px] transition-transform active:scale-[0.98]"
+                >
+                  Upload & Continue
+                </button>
+                <button
+                  onClick={skipTestUpload}
+                  className="w-full bg-transparent text-zinc-500 dark:text-zinc-400 text-base font-medium py-4 rounded-[20px]"
+                >
+                  Skip for now
+                </button>
               </div>
             </motion.div>
           )}
@@ -99,57 +136,51 @@ const Onboarding = () => {
           {step === 2 && (
             <motion.div
               key="step2"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              className="flex-1 flex flex-col"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.05 }}
+              className="flex-1 flex flex-col justify-center text-center relative"
             >
-              <h2 className="font-display text-2xl font-semibold text-foreground mb-2">
-                Quick health snapshot
-              </h2>
-              <p className="text-sm text-muted-foreground mb-6">Tap the option that best fits you.</p>
-
-              <div className="space-y-5 mb-auto">
-                <QuestionGroup label="Sleep quality" options={sleepOptions} />
-                <QuestionGroup label="Stress level" options={stressOptions} />
-                <QuestionGroup label="Last check-up" options={checkupOptions} />
-              </div>
+               <div className="absolute inset-0 bg-white/40 dark:bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/60 dark:border-white/10 flex flex-col items-center justify-center p-8">
+                 <div className="w-20 h-20 rounded-full bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center mb-6">
+                    <Sparkles className="w-10 h-10 text-amber-600 dark:text-amber-400" />
+                 </div>
+                 <h1 className="text-3xl font-semibold text-zinc-900 dark:text-zinc-50 mb-4 tracking-tight">
+                    Welcome to WelUp
+                 </h1>
+                 <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 max-w-[280px]">
+                    Enjoy a <span className="font-semibold text-zinc-900 dark:text-zinc-100">Free GP/SP Consult</span> and <span className="font-semibold text-zinc-900 dark:text-zinc-100">50% off</span> your first test as a welcome gift.
+                 </p>
+                 <button
+                    onClick={() => navigate("/home")}
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-white text-lg font-medium py-4 rounded-[20px] transition-transform active:scale-[0.98] shadow-xl shadow-amber-600/20"
+                  >
+                    Get Started
+                  </button>
+               </div>
             </motion.div>
           )}
         </AnimatePresence>
-
-        <button
-          onClick={next}
-          className="w-full bg-primary text-primary-foreground font-semibold text-base py-4 rounded-pill mt-6 transition-transform active:scale-[0.97]"
-        >
-          {step < 2 ? "Continue →" : "Build My Health Profile →"}
-        </button>
       </div>
     </div>
   );
 };
 
-const QuestionGroup = ({ label, options }: { label: string; options: string[] }) => {
-  const [selected, setSelected] = useState<string | null>(null);
+const IntentCard = ({ icon, title, desc, onClick }: { icon: React.ReactNode, title: string, desc: string, onClick: () => void }) => {
   return (
-    <div>
-      <p className="text-sm font-semibold text-foreground mb-2">{label}</p>
-      <div className="flex gap-2">
-        {options.map((opt) => (
-          <button
-            key={opt}
-            onClick={() => setSelected(opt)}
-            className={`flex-1 py-2.5 text-sm font-medium rounded-pill border-2 transition-all ${
-              selected === opt
-                ? "border-primary bg-primary/10 text-primary"
-                : "border-border bg-card text-muted-foreground"
-            }`}
-          >
-            {opt}
-          </button>
-        ))}
+    <button
+      onClick={onClick}
+      className="w-full flex items-center gap-5 p-5 relative overflow-hidden group text-left transition-transform active:scale-[0.98]"
+    >
+      <div className="absolute inset-0 bg-white/60 dark:bg-white/5 backdrop-blur-md rounded-[24px] border border-white/80 dark:border-white/10 group-hover:bg-white/80 dark:group-hover:bg-white/10 transition-colors" />
+      <div className="relative z-10 w-12 h-12 rounded-full bg-white dark:bg-zinc-800 shadow-sm flex items-center justify-center shrink-0">
+        {icon}
       </div>
-    </div>
+      <div className="relative z-10 flex-1">
+        <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">{title}</h3>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">{desc}</p>
+      </div>
+    </button>
   );
 };
 

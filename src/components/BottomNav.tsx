@@ -1,11 +1,12 @@
-import { Home, CalendarCheck, PenLine, User } from "lucide-react";
+import { Home, MessageCircle, HeartPulse, User } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const tabs = [
   { icon: Home, label: "Home", path: "/home" },
-  { icon: CalendarCheck, label: "Plan", path: "/plan" },
-  { icon: PenLine, label: "Log", path: "/log" },
-  { icon: User, label: "Profile", path: "/profile" },
+  { icon: MessageCircle, label: "AI Chat", path: "/chat" },
+  { icon: HeartPulse, label: "Health", path: "/profile" },
+  { icon: User, label: "Account", path: "/account" },
 ];
 
 const BottomNav = () => {
@@ -13,20 +14,31 @@ const BottomNav = () => {
   const location = useLocation();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-t border-border">
-      <div className="max-w-[390px] mx-auto flex items-center justify-around py-2 pb-[env(safe-area-inset-bottom,8px)]">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-2xl border-t border-white/10 dark:border-white/5">
+      <div className="max-w-[390px] mx-auto flex items-center justify-around py-3 pb-[env(safe-area-inset-bottom,16px)]">
         {tabs.map(({ icon: Icon, label, path }) => {
           const active = location.pathname === path;
           return (
             <button
               key={path}
               onClick={() => navigate(path)}
-              className={`flex flex-col items-center gap-0.5 px-4 py-1.5 rounded-pill transition-colors ${
-                active ? "text-primary" : "text-muted-foreground"
-              }`}
+              className="relative flex flex-col items-center gap-1 p-2 transition-colors w-16"
             >
-              <Icon size={22} strokeWidth={active ? 2.5 : 1.8} />
-              <span className="text-[10px] font-medium">{label}</span>
+              {active && (
+                <motion.div
+                  layoutId="bottom-nav-indicator"
+                  className="absolute inset-0 bg-primary/10 rounded-xl"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                />
+              )}
+              <Icon 
+                size={22} 
+                className={`relative z-10 transition-colors ${active ? "text-primary" : "text-muted-foreground"}`} 
+                strokeWidth={active ? 2.5 : 1.8} 
+              />
+              <span className={`text-[10px] font-medium relative z-10 transition-colors ${active ? "text-primary" : "text-muted-foreground"}`}>
+                {label}
+              </span>
             </button>
           );
         })}
