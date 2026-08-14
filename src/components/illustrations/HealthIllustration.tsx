@@ -32,18 +32,18 @@ export const HealthIllustration: React.FC<IllustrationProps> = ({ className = ''
       </defs>
       
       {/* Back of glass */}
-      <path d="M32 24 V74 C32 86 64 86 64 74 V24 Z" fill="url(#glassGrad)" />
+      <path d="M40 24 V74 C40 82 56 82 56 74 V24 Z" fill="url(#glassGrad)" />
       
       {/* Blood */}
-      <path d="M34 45 V74 C34 82 62 82 62 74 V45 Q48 48 34 45 Z" fill="url(#bloodGrad)" />
+      <path d="M42 45 V74 C42 79 54 79 54 74 V45 Q48 47 42 45 Z" fill="url(#bloodGrad)" />
       
       {/* Cap */}
-      <rect x="30" y="14" width="36" height="12" rx="3" fill="url(#capGrad)" />
-      <rect x="32" y="10" width="32" height="4" rx="1" fill="url(#capGrad)" />
-      <rect x="28" y="24" width="40" height="3" rx="1" fill="#e5e5e5" /> {/* grey rubber rim */}
+      <rect x="38" y="14" width="20" height="12" rx="3" fill="url(#capGrad)" />
+      <rect x="40" y="10" width="16" height="4" rx="1" fill="url(#capGrad)" />
+      <rect x="36" y="24" width="24" height="3" rx="1" fill="#e5e5e5" /> {/* grey rubber rim */}
       
       {/* Front reflection */}
-      <path d="M38 28 V70 C38 74 42 74 42 70 V28 Z" fill="url(#highlight)" />
+      <path d="M44 28 V70 C44 72 46 72 46 70 V28 Z" fill="url(#highlight)" />
     </svg>
   );
 };
