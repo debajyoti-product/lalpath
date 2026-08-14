@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Send, User as UserIcon, Calendar, CheckCircle2, ThumbsUp, ThumbsDown, Copy, Info, Share2, Plus, Mic, ArrowLeft } from "lucide-react";
+import { Send, User as UserIcon, Calendar, CheckCircle2, ThumbsUp, ThumbsDown, Copy, Info, Share2, Plus, Mic, ArrowLeft, Stethoscope, FileText, Pill } from "lucide-react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 type Message = {
@@ -152,22 +152,22 @@ const Chat = () => {
               <div className="mt-8">
                 <ul className="space-y-4">
                   <li className="flex items-center gap-4 text-[15px] text-foreground font-medium">
-                     <div className="w-5 h-5 rounded-full border-[1.5px] border-primary flex items-center justify-center shrink-0 shadow-sm">
-                       <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+                     <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 shadow-sm">
+                       <Stethoscope className="w-4 h-4" />
                      </div>
-                     Match with a doctor for your symptoms
+                     Schedule doctor consultations
                   </li>
                   <li className="flex items-center gap-4 text-[15px] text-foreground font-medium">
-                     <div className="w-5 h-5 rounded-full border-[1.5px] border-primary flex items-center justify-center shrink-0 shadow-sm">
-                       <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+                     <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 shadow-sm">
+                       <FileText className="w-4 h-4" />
                      </div>
-                     Help understand your lab reports
+                     Get insights on your lab reports
                   </li>
                   <li className="flex items-center gap-4 text-[15px] text-foreground font-medium">
-                     <div className="w-5 h-5 rounded-full border-[1.5px] border-primary flex items-center justify-center shrink-0 shadow-sm">
-                       <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+                     <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 shadow-sm">
+                       <Pill className="w-4 h-4" />
                      </div>
-                     Answer questions about your prescription
+                     Understand your medications
                   </li>
                 </ul>
               </div>
