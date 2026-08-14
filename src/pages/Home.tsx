@@ -57,7 +57,7 @@ const Home = () => {
               className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
             >
               <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">
-                Consult a<br/><span className="text-[21px] block mt-0.5">doctor</span>
+                Consult<br/><span className="text-[23px] block mt-0.5">Doctor</span>
               </h3>
               <div className="absolute bottom-[-8px] right-[-12px] opacity-90 -rotate-12 drop-shadow-lg scale-110">
                 <ConsultIllustration className="w-[80px] h-[80px]" />
@@ -70,7 +70,7 @@ const Home = () => {
               className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
             >
               <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">
-                Book<br/><span className="text-[21px] block mt-0.5">checkup</span>
+                Book<br/><span className="text-[23px] block mt-0.5">Checkup</span>
               </h3>
               <div className="absolute bottom-[-8px] right-[-12px] opacity-90 rotate-12 drop-shadow-lg scale-110">
                 <HealthIllustration className="w-[80px] h-[80px]" />
@@ -86,7 +86,7 @@ const Home = () => {
           transition={{ delay: 0.25 }}
           className="mb-10"
         >
-          <h2 className="text-xl font-bold text-foreground mb-4 px-1">Your report tells us</h2>
+          <h2 className="text-xl font-bold text-foreground mb-4 px-1">Know your <span className="italic font-normal">health</span> better</h2>
           <div className="grid grid-cols-3 gap-2.5 mb-5">
             {/* LDL High */}
             <div className="bg-card rounded-[20px] shadow-sm border border-border/50 p-3 flex flex-col items-center text-center gap-2">
@@ -137,7 +137,7 @@ const Home = () => {
           transition={{ delay: 0.4 }}
           className="mb-10"
         >
-          <h2 className="text-lg font-medium text-foreground mb-4 px-1">For You</h2>
+          <h2 className="text-lg font-medium text-foreground mb-4 px-1">welUp bites</h2>
           <div className="flex gap-4 overflow-x-auto pb-4 -mr-5 pr-5 scrollbar-hide snap-x snap-mandatory">
             <div
               onClick={() => navigate("/chat?context=high_sugar")}
