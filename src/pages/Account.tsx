@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import BottomNav from "@/components/BottomNav";
-import { CreditCard, Gift, Users, ChevronRight, Stethoscope, Syringe, Camera, FileText, Activity, Edit2 } from "lucide-react";
+import { CreditCard, Gift, Users, ChevronRight, Stethoscope, Syringe, Camera, FileText, Activity, Edit2, Calendar } from "lucide-react";
 
 const Account = () => {
   return (
@@ -78,8 +78,8 @@ const Account = () => {
             </button>
             <button className="w-full flex items-center justify-between p-5 hover:bg-white/40 dark:hover:bg-white/5 transition-colors">
               <div className="flex items-center gap-3">
-                 <Users className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
-                 <span className="text-base font-medium text-zinc-900 dark:text-zinc-100">Refer a Friend</span>
+                 <Calendar className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+                 <span className="text-base font-medium text-zinc-900 dark:text-zinc-100">Bookings</span>
               </div>
               <ChevronRight className="w-5 h-5 text-zinc-400" />
             </button>
