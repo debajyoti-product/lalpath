@@ -86,6 +86,7 @@ const Home = () => {
           transition={{ delay: 0.25 }}
           className="mb-10"
         >
+          <h2 className="text-xl font-bold text-foreground mb-4 px-1">Know your <span className="italic font-normal">health</span> better</h2>
           <div className="bg-card dark:bg-zinc-900 border border-border/50 rounded-[24px] p-4 shadow-sm relative">
             
             {/* Header row */}
