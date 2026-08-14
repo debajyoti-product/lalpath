@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import BottomNav from "@/components/BottomNav";
+import { useNavigate } from "react-router-dom";
 import { CreditCard, Gift, Users, ChevronRight, Stethoscope, Syringe, Camera, FileText, Activity, Edit2, Calendar } from "lucide-react";
 
 const Account = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-[#F9F7F5] dark:bg-zinc-950 pb-24 relative overflow-hidden">
        {/* Background Orbs */}
@@ -48,7 +50,9 @@ const Account = () => {
               </div>
             </div>
 
-            <button className="w-full bg-white/60 dark:bg-white/5 border border-border/50 text-foreground font-semibold py-3 rounded-full shadow-sm flex items-center justify-center gap-2 transition-transform active:scale-[0.98]">
+            <button 
+              onClick={() => navigate("/edit-profile")}
+              className="w-full bg-white/60 dark:bg-white/5 border border-border/50 text-foreground font-semibold py-3 rounded-full shadow-sm flex items-center justify-center gap-2 transition-transform active:scale-[0.98]">
               <Edit2 className="w-4 h-4" /> Edit Profile
             </button>
           </div>
