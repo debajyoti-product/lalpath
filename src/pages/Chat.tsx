@@ -122,13 +122,7 @@ const Chat = () => {
       <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-orange-100/80 to-transparent dark:from-orange-900/30 pointer-events-none z-0" />
 
       {/* Header */}
-      <div className="pt-12 pb-4 px-6 relative z-20 flex items-center gap-4 bg-transparent">
-        <button 
-          onClick={() => navigate("/home")} 
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/60 dark:bg-white/5 backdrop-blur-md shadow-sm border border-border transition-transform active:scale-95 shrink-0"
-        >
-          <ArrowLeft className="w-5 h-5 text-foreground" />
-        </button>
+      <div className="pt-12 pb-4 px-6 relative z-20 flex items-center bg-transparent">
         <h1 className="text-3xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight">
           WelUp AI
         </h1>
