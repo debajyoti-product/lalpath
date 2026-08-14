@@ -117,15 +117,13 @@ const Chat = () => {
 
   return (
     <div className="min-h-screen bg-[#F9F7F5] dark:bg-zinc-950 flex flex-col relative overflow-hidden">
-      {/* Background Glow */}
-      {messages.length === 0 && !context && (
-        <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-primary/10 blur-[100px] rounded-full pointer-events-none" />
-      )}
+      {/* Top Gradient */}
+      <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-orange-100/80 to-transparent dark:from-orange-900/30 pointer-events-none z-0" />
 
       {/* Header */}
-      <div className="pt-12 pb-4 px-6 relative z-20 flex items-center gap-4 bg-[#F9F7F5]/80 dark:bg-zinc-950/80 backdrop-blur-xl border-b border-border">
+      <div className="pt-12 pb-4 px-6 relative z-20 flex items-center gap-4 bg-transparent">
         <button 
-          onClick={() => navigate(-1)} 
+          onClick={() => navigate("/home")} 
           className="w-10 h-10 flex items-center justify-center rounded-full bg-white/60 dark:bg-white/5 backdrop-blur-md shadow-sm border border-border transition-transform active:scale-95 shrink-0"
         >
           <ArrowLeft className="w-5 h-5 text-foreground" />

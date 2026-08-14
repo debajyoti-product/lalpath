@@ -54,7 +54,7 @@ const Home = () => {
             <motion.div
               variants={itemVariant}
               onClick={() => navigate("/chat?query=consult_doctor")}
-              className="bg-card rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
+              className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
             >
               <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">
                 Consult a<br/><span className="text-[21px] block mt-0.5">doctor</span>
@@ -67,7 +67,7 @@ const Home = () => {
             <motion.div
               variants={itemVariant}
               onClick={() => navigate("/chat?query=book_test")}
-              className="bg-card rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
+              className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
             >
               <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">
                 Book<br/><span className="text-[21px] block mt-0.5">checkup</span>
