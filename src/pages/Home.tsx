@@ -1,135 +1,200 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import BottomNav from "@/components/BottomNav";
-import { ChevronRight, MessageCircle, Stethoscope, Pill } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+
+import hba1cImg from "@/assets/content/hba1c.jpg";
+import metforminImg from "@/assets/content/metformin.jpg";
+import cholesterolImg from "@/assets/content/cholesterol.jpg";
+
+import {
+  ChatIllustration,
+  HealthIllustration,
+  PrescriptionIllustration,
+  ConsultIllustration,
+} from "@/components/illustrations";
 
 const Home = () => {
   const navigate = useNavigate();
-  // State to randomly or sequentially mock the AI slot logic for prototype
-  const [heroType] = useState<"action" | "content">("content");
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const itemVariant = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+  };
 
   return (
     <div className="min-h-screen bg-[#F9F7F5] dark:bg-zinc-950 pb-24 relative overflow-hidden">
-      {/* Background Orbs */}
-      <div className="absolute top-[-5%] left-[-5%] w-[300px] h-[300px] bg-amber-200/40 dark:bg-amber-900/30 blur-[100px] rounded-full pointer-events-none" />
-      <div className="absolute top-[40%] right-[-10%] w-[250px] h-[250px] bg-rose-200/30 dark:bg-rose-900/20 blur-[100px] rounded-full pointer-events-none" />
-
       <div className="px-5 pt-12 relative z-10 max-w-[390px] mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
+          className="mb-10"
         >
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">Good morning,</p>
-          <h1 className="text-3xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight">Rohan</h1>
+          <p className="text-sm text-muted-foreground font-medium">Good morning,</p>
+          <h1 className="text-3xl font-semibold text-foreground tracking-tight">Rohan</h1>
           <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800/50">
             <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
             <p className="text-xs font-medium text-amber-800 dark:text-amber-300">Last test was 14 months ago</p>
           </div>
         </motion.div>
 
-        {/* Dynamic AI Hero Slot */}
+        {/* Hero Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="mb-6 relative group"
+          className="mb-10 relative overflow-hidden rounded-[32px] shadow-card bg-gradient-to-br from-primary to-[hsl(20,80%,55%)] p-6 flex flex-col items-start"
         >
-          <div className="absolute inset-0 bg-white/60 dark:bg-white/5 backdrop-blur-xl rounded-[32px] border border-white/80 dark:border-white/10 shadow-sm" />
-          
-          {heroType === "action" ? (
-            <div className="relative p-6 flex flex-col items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-rose-100 dark:bg-rose-900/40 flex items-center justify-center">
-                <Stethoscope className="w-6 h-6 text-rose-600 dark:text-rose-400" />
-              </div>
-              <div>
-                <h2 className="text-xl font-medium text-zinc-900 dark:text-zinc-100 mb-1">
-                  You mentioned knee pain
-                </h2>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-6 leading-relaxed">
-                  Our AI suggests speaking with an Orthopedic Specialist. Your free consult credit is ready to use.
-                </p>
-              </div>
-              <button
-                onClick={() => navigate("/chat")}
-                className="w-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-base font-medium py-3.5 rounded-[20px] transition-transform active:scale-[0.98] flex items-center justify-center gap-2"
-              >
-                See a Specialist <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          ) : (
-            <div className="relative p-6 flex flex-col items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center">
-                <Pill className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-              </div>
-              <div>
-                <h2 className="text-xl font-medium text-zinc-900 dark:text-zinc-100 mb-1">
-                  About your Metformin
-                </h2>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-2 leading-relaxed">
-                  You were recently prescribed Metformin (500mg) for blood sugar management. It works by reducing the amount of glucose your liver produces.
-                </p>
-                <p className="text-xs text-zinc-500 dark:text-zinc-500 font-medium tracking-wide">
-                  Common side effects include mild nausea, especially in the first week. Taking it with meals helps.
-                </p>
-              </div>
-              <button
-                onClick={() => navigate("/chat?context=metformin")}
-                className="w-full bg-zinc-100 dark:bg-white/10 text-zinc-900 dark:text-white text-sm font-medium py-3 rounded-[16px] transition-transform active:scale-[0.98] flex items-center justify-center gap-2 mt-2"
-              >
-                Ask a follow-up question <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          )}
+          <div className="text-white/60 text-[11px] uppercase tracking-[0.2em] font-medium mb-3">
+            AI Insight
+          </div>
+          <h2 className="font-display text-2xl text-white font-medium mb-2">
+            Your cholesterol needs attention
+          </h2>
+          <p className="text-white/80 text-sm leading-relaxed mb-6">
+            Your recent LDL levels are slightly elevated. We've prepared a personalized plan to help you manage it naturally.
+          </p>
+          <button 
+            onClick={() => navigate("/chat?context=cholesterol")}
+            className="bg-white text-primary rounded-full px-6 py-3 text-sm font-semibold shadow-sm transition-transform active:scale-[0.98]"
+          >
+            View Recommendations
+          </button>
         </motion.div>
 
-        {/* Bookings Status Strip */}
+        {/* Module Grid (2x2) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mb-6"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+          className="mb-10"
         >
-          <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3 px-1">Bookings</h3>
-          <div className="relative overflow-hidden rounded-[24px]">
-            <div className="absolute inset-0 bg-white/40 dark:bg-white/5 backdrop-blur-md border border-white/60 dark:border-white/10" />
-            <div className="relative flex divide-x divide-zinc-200 dark:divide-white/10">
-              <div className="flex-1 p-4 flex flex-col items-center justify-center gap-1">
-                <span className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">1</span>
-                <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">Scheduled</span>
+          <h2 className="text-lg font-medium text-foreground mb-4 px-1">Explore</h2>
+          <div className="grid grid-cols-2 gap-4">
+            <motion.div
+              variants={itemVariant}
+              onClick={() => navigate("/chat")}
+              className="bg-card rounded-card shadow-card p-5 relative overflow-hidden min-h-[160px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98]"
+            >
+              <div>
+                <h3 className="text-sm font-semibold text-foreground">Chat</h3>
+                <p className="text-xs text-muted-foreground mt-1">Ask anything</p>
               </div>
-              <div className="flex-1 p-4 flex flex-col items-center justify-center gap-1 opacity-50">
-                <span className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">0</span>
-                <span className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">Completed</span>
+              <div className="w-8 h-8 rounded-full bg-foreground flex items-center justify-center mt-4">
+                <ArrowUpRight className="w-4 h-4 text-background" />
               </div>
-            </div>
+              <div className="absolute bottom-[-8px] right-[-8px] opacity-80">
+                <ChatIllustration />
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariant}
+              onClick={() => navigate("/profile")}
+              className="bg-card rounded-card shadow-card p-5 relative overflow-hidden min-h-[160px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98]"
+            >
+              <div>
+                <h3 className="text-sm font-semibold text-foreground">Health Profile</h3>
+                <p className="text-xs text-muted-foreground mt-1">Lab reports & biomarkers</p>
+              </div>
+              <div className="w-8 h-8 rounded-full bg-foreground flex items-center justify-center mt-4">
+                <ArrowUpRight className="w-4 h-4 text-background" />
+              </div>
+              <div className="absolute bottom-[-8px] right-[-8px] opacity-80">
+                <HealthIllustration />
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariant}
+              onClick={() => navigate("/chat?context=metformin")}
+              className="bg-card rounded-card shadow-card p-5 relative overflow-hidden min-h-[160px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98]"
+            >
+              <div>
+                <h3 className="text-sm font-semibold text-foreground">Prescriptions</h3>
+                <p className="text-xs text-muted-foreground mt-1">Medication info</p>
+              </div>
+              <div className="w-8 h-8 rounded-full bg-foreground flex items-center justify-center mt-4">
+                <ArrowUpRight className="w-4 h-4 text-background" />
+              </div>
+              <div className="absolute bottom-[-8px] right-[-8px] opacity-80">
+                <PrescriptionIllustration />
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariant}
+              onClick={() => navigate("/book-test")}
+              className="bg-card rounded-card shadow-card p-5 relative overflow-hidden min-h-[160px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98]"
+            >
+              <div>
+                <h3 className="text-sm font-semibold text-foreground">Book a Consult</h3>
+                <p className="text-xs text-muted-foreground mt-1">See a specialist</p>
+              </div>
+              <div className="w-8 h-8 rounded-full bg-foreground flex items-center justify-center mt-4">
+                <ArrowUpRight className="w-4 h-4 text-background" />
+              </div>
+              <div className="absolute bottom-[-8px] right-[-8px] opacity-80">
+                <ConsultIllustration />
+              </div>
+            </motion.div>
           </div>
         </motion.div>
 
-        {/* Quick entry into AI Chat */}
+        {/* Personalized Content Cards */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.5 }}
+          className="mb-10"
         >
-          <button
-            onClick={() => navigate("/chat")}
-            className="w-full flex items-center justify-between p-5 relative overflow-hidden group transition-transform active:scale-[0.98]"
-          >
-            <div className="absolute inset-0 bg-amber-600 rounded-[24px] shadow-lg shadow-amber-600/20" />
-            <div className="relative z-10 flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                <MessageCircle className="w-5 h-5 text-white" />
-              </div>
-              <div className="text-left">
-                <h3 className="text-base font-medium text-white">Ask WelUp AI</h3>
-                <p className="text-xs text-amber-100">Check symptoms or ask questions</p>
+          <h2 className="text-lg font-medium text-foreground mb-4 px-1">For You</h2>
+          <div className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 scrollbar-hide snap-x snap-mandatory">
+            <div
+              onClick={() => navigate("/chat?context=high_sugar")}
+              className="min-w-[240px] h-[160px] rounded-card shadow-card overflow-hidden relative shrink-0 snap-start cursor-pointer group"
+            >
+              <img src={hba1cImg} alt="Understanding your HbA1c" className="object-cover w-full h-full absolute inset-0" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="font-display text-base text-white font-medium">Understanding your HbA1c</h3>
+                <p className="text-[11px] text-white/70 mt-1">Based on your recent test</p>
               </div>
             </div>
-            <ChevronRight className="w-5 h-5 text-white/70 relative z-10" />
-          </button>
+
+            <div
+              onClick={() => navigate("/chat?context=metformin")}
+              className="min-w-[240px] h-[160px] rounded-card shadow-card overflow-hidden relative shrink-0 snap-start cursor-pointer group"
+            >
+              <img src={metforminImg} alt="What is Metformin?" className="object-cover w-full h-full absolute inset-0" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="font-display text-base text-white font-medium">What is Metformin?</h3>
+                <p className="text-[11px] text-white/70 mt-1">From your prescription</p>
+              </div>
+            </div>
+
+            <div
+              onClick={() => navigate("/chat?context=metformin")}
+              className="min-w-[240px] h-[160px] rounded-card shadow-card overflow-hidden relative shrink-0 snap-start cursor-pointer group"
+            >
+              <img src={cholesterolImg} alt="Why cholesterol matters" className="object-cover w-full h-full absolute inset-0" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="font-display text-base text-white font-medium">Why cholesterol matters</h3>
+                <p className="text-[11px] text-white/70 mt-1">Your LDL was flagged</p>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
 

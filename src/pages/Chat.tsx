@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Send, ShieldAlert, Phone, User as UserIcon, Calendar, CheckCircle2 } from "lucide-react";
+import { Send, User as UserIcon, Calendar, CheckCircle2, ThumbsUp, ThumbsDown, Copy, Info, Share2, Plus, Mic } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import BottomNav from "@/components/BottomNav";
 
@@ -118,16 +118,10 @@ const Chat = () => {
         <h1 className="text-xl font-medium text-zinc-900 dark:text-zinc-50 tracking-tight text-center">
           WelUp AI
         </h1>
-        <div className="flex items-center justify-center gap-1.5 mt-1">
-          <ShieldAlert className="w-3.5 h-3.5 text-amber-500" />
-          <span className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">
-            General Info, not medical advice
-          </span>
-        </div>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-5 pt-6 pb-32 relative z-10 scroll-smooth">
+      <div className="flex-1 overflow-y-auto px-5 pt-6 pb-44 relative z-10 scroll-smooth">
         <div className="max-w-[390px] mx-auto space-y-6">
           {messages.map((msg) => (
             <motion.div
@@ -138,19 +132,39 @@ const Chat = () => {
             >
               {msg.text && (
                 <div
-                  className={`max-w-[85%] p-4 ${
+                  className={`max-w-[85%] ${
                     msg.sender === "user"
-                      ? "bg-amber-600 text-white rounded-[24px] rounded-br-[8px]"
-                      : "bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-white/5 shadow-sm rounded-[24px] rounded-bl-[8px]"
+                      ? "p-4 bg-primary/10 text-foreground rounded-[20px] rounded-br-[6px]"
+                      : "text-foreground"
                   }`}
                 >
-                  <p className="text-[15px] leading-relaxed">{msg.text}</p>
+                  <p className="text-[15px] leading-[1.75]">{msg.text}</p>
+                  
+                  {msg.sender === "ai" && (
+                    <div className="flex items-center gap-5 mt-2">
+                      <button className="text-muted-foreground hover:text-foreground transition-colors">
+                        <ThumbsUp className="w-4 h-4" />
+                      </button>
+                      <button className="text-muted-foreground hover:text-foreground transition-colors">
+                        <ThumbsDown className="w-4 h-4" />
+                      </button>
+                      <button className="text-muted-foreground hover:text-foreground transition-colors">
+                        <Copy className="w-4 h-4" />
+                      </button>
+                      <button className="text-muted-foreground hover:text-foreground transition-colors">
+                        <Info className="w-4 h-4" />
+                      </button>
+                      <button className="text-muted-foreground hover:text-foreground transition-colors">
+                        <Share2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
 
               {/* Actionable Doctor Card */}
               {msg.isActionable && (
-                <div className="mt-3 w-full max-w-[85%] bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-[24px] p-4 shadow-sm">
+                <div className="mt-4 w-full max-w-[85%] bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-[24px] p-4 shadow-sm">
                   <div className="flex gap-3 mb-4">
                     <div className="w-12 h-12 rounded-full bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center shrink-0">
                       <UserIcon className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
@@ -183,7 +197,7 @@ const Chat = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 onClick={handleMockDoctorMatch}
-                className="text-xs font-medium text-amber-600 bg-amber-50 px-4 py-2 rounded-full border border-amber-200 self-center mx-auto block"
+                className="text-xs font-medium text-primary bg-primary/10 px-4 py-2 rounded-full self-center mx-auto block"
               >
                 (Mock Response: 2 weeks, swelling)
              </motion.button>
@@ -194,30 +208,36 @@ const Chat = () => {
 
       {/* Input Area */}
       <div className="absolute bottom-[env(safe-area-bottom,72px)] left-0 right-0 p-4 bg-gradient-to-t from-[#F9F7F5] via-[#F9F7F5] to-transparent dark:from-zinc-950 dark:via-zinc-950 z-30">
-        <div className="max-w-[390px] mx-auto relative">
-           {/* Persistent "Talk to a doctor" affordance */}
-          <div className="absolute -top-10 right-2">
-             <button className="flex items-center gap-1.5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 shadow-sm px-3 py-1.5 rounded-full text-xs font-medium text-zinc-600 dark:text-zinc-300">
-               <Phone className="w-3 h-3 text-rose-500" /> Talk to a doctor
-             </button>
-          </div>
-
-          <div className="relative flex items-center mb-[env(safe-area-inset-bottom,48px)] pb-12">
+        <div className="max-w-[390px] mx-auto relative flex flex-col mb-[env(safe-area-inset-bottom,48px)] pb-12">
+          
+          <div className="relative flex items-center bg-card border border-border rounded-full shadow-sm">
+            <button className="pl-4 pr-2 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0">
+              <Plus className="w-5 h-5" />
+            </button>
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
               placeholder="Describe your symptom..."
-              className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-full pl-5 pr-14 py-4 text-[15px] focus:outline-none focus:ring-2 focus:ring-amber-500/20 shadow-sm"
+              className="flex-1 bg-transparent py-4 text-[15px] focus:outline-none text-foreground placeholder:text-muted-foreground"
             />
-            <button
-              onClick={handleSend}
-              className="absolute right-2 top-1 w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center transition-transform active:scale-95"
-            >
-              <Send className="w-4 h-4 ml-0.5" />
-            </button>
+            <div className="pr-2 pl-2 flex items-center gap-2 flex-shrink-0">
+              <button className="text-muted-foreground hover:text-foreground transition-colors">
+                <Mic className="w-5 h-5" />
+              </button>
+              <button
+                onClick={handleSend}
+                className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center transition-transform active:scale-95"
+              >
+                <Send className="w-4 h-4 ml-0.5" />
+              </button>
+            </div>
           </div>
+          
+          <p className="text-[11px] text-muted-foreground text-center mt-2">
+            This is general info, not medical advice. Confirm with a doctor.
+          </p>
         </div>
       </div>
 

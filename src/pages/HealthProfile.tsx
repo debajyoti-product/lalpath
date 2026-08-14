@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Star, ChevronRight, FileUp, Plus, X, Calendar as CalendarIcon, ArrowLeft } from "lucide-react";
 import { Drawer, DrawerContent, DrawerTrigger, DrawerClose } from "@/components/ui/drawer";
+import BottomNav from "@/components/BottomNav";
 
 // Mock Data
 const biomarkers = [
@@ -115,12 +116,12 @@ const HealthProfile = () => {
         </div>
       </div>
 
-      {/* Fixed Bottom CTAs (Replaces BottomNav & Recommended Action) */}
-      <div className="fixed bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-[#F9F7F5] via-[#F9F7F5] to-transparent dark:from-zinc-950 dark:via-zinc-950 z-40">
-         <div className="max-w-[390px] mx-auto flex flex-row gap-3">
+      {/* Fixed Bottom CTAs */}
+      <div className="fixed bottom-[env(safe-area-bottom,72px)] left-0 right-0 p-5 bg-gradient-to-t from-[#F9F7F5] via-[#F9F7F5] to-transparent dark:from-zinc-950 dark:via-zinc-950 z-40 pointer-events-none">
+         <div className="max-w-[390px] mx-auto flex flex-row gap-3 pointer-events-auto">
            <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
              <DrawerTrigger asChild>
-               <button className="flex-1 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 text-sm font-semibold py-4 rounded-[20px] border border-zinc-200 dark:border-white/10 shadow-sm transition-transform active:scale-[0.98] flex items-center justify-center gap-2">
+               <button className="flex-1 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 text-sm font-semibold py-4 rounded-[20px] border border-zinc-200 dark:border-white/10 shadow-md shadow-zinc-200/50 dark:shadow-black/20 transition-transform active:scale-[0.98] flex items-center justify-center gap-2">
                  <Plus className="w-4 h-4" /> Log Data
                </button>
              </DrawerTrigger>
@@ -176,11 +177,13 @@ const HealthProfile = () => {
               </DrawerContent>
            </Drawer>
 
-           <button className="flex-1 bg-amber-600 text-white text-sm font-semibold py-4 rounded-[20px] shadow-lg shadow-amber-600/20 transition-transform active:scale-[0.98] flex items-center justify-center gap-2">
+           <button className="flex-1 bg-amber-600 text-white text-sm font-semibold py-4 rounded-[20px] shadow-md shadow-amber-600/30 transition-transform active:scale-[0.98] flex items-center justify-center gap-2">
              <FileUp className="w-4 h-4" /> Upload report
            </button>
          </div>
       </div>
+
+      <BottomNav />
     </div>
   );
 };
