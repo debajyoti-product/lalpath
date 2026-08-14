@@ -143,7 +143,7 @@ const Chat = () => {
               className="flex flex-col items-start px-2 mt-4"
             >
               
-              <h2 className="text-[32px] font-medium leading-[1.1] text-foreground tracking-tight mb-2">
+              <h2 className="text-[27px] font-medium leading-[1.1] text-foreground tracking-tight mb-2">
                 Hi <span className="font-bold text-primary">Debajyoti!</span><br/>
                 <span className="font-bold">How can I help you today?</span>
               </h2>
