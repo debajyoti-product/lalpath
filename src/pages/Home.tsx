@@ -158,7 +158,7 @@ const Home = () => {
           transition={{ delay: 0.4 }}
           className="mb-10"
         >
-          <h2 className="text-lg font-medium text-foreground mb-4 px-1">welUp bites</h2>
+          <h2 className="text-xl font-bold text-foreground mb-4 px-1">welUp bites</h2>
           <div className="flex gap-4 overflow-x-auto pb-4 -mr-5 pr-5 scrollbar-hide snap-x snap-mandatory">
             <div
               onClick={() => navigate("/chat?context=high_sugar")}
