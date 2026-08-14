@@ -3,6 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { Star, ChevronRight, FileUp, Plus, X, Calendar as CalendarIcon, ArrowLeft } from "lucide-react";
 import { Drawer, DrawerContent, DrawerTrigger, DrawerClose } from "@/components/ui/drawer";
 import BottomNav from "@/components/BottomNav";
+import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, CartesianGrid, Tooltip } from "recharts";
+
+const historyData = [
+  { date: "Jul 1", value: 92 },
+  { date: "Jul 4", value: 94 },
+  { date: "Jul 7", value: 93 },
+  { date: "Jul 10", value: 95 },
+  { date: "Jul 14", value: 95 },
+];
 
 // Mock Data
 const biomarkers = [
@@ -149,13 +158,30 @@ const HealthProfile = () => {
             <button className="px-4 py-1.5 rounded-full bg-card border border-border text-foreground text-xs font-medium shrink-0">Vit. D</button>
           </div>
 
-          {/* Trend Graph (Mock) */}
-          <div className="bg-card rounded-[20px] p-4 border border-border/50 shadow-sm mb-4 h-[180px] flex items-end gap-2 justify-between">
-            {[40, 70, 50, 90, 60, 100, 80].map((h, i) => (
-              <div key={i} className="w-8 bg-primary/20 rounded-t-sm" style={{ height: `${h}%` }}>
-                 <div className="w-full bg-primary rounded-t-sm" style={{ height: '4px' }} />
-              </div>
-            ))}
+          {/* Trend Graph */}
+          <div className="bg-card rounded-[20px] p-4 border border-border/50 shadow-sm mb-4 h-[180px]">
+            <div className="h-full w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={historyData} margin={{ top: 5, right: 5, bottom: 0, left: -25 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(150, 150, 150, 0.2)" />
+                  <XAxis dataKey="date" tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} axisLine={false} tickLine={false} dy={10} />
+                  <YAxis tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} axisLine={false} tickLine={false} domain={[85, 105]} />
+                  <Tooltip 
+                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                    formatter={(val: number) => [`${val} mg/dL`, 'Blood Sugar']}
+                    labelStyle={{ color: 'black', fontWeight: 'bold', marginBottom: '4px' }}
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="value" 
+                    stroke="#10b981" 
+                    strokeWidth={3} 
+                    dot={{ r: 4, fill: "#10b981", stroke: "white", strokeWidth: 2 }}
+                    activeDot={{ r: 6, fill: "#10b981", stroke: "white", strokeWidth: 2 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
           </div>
 
           {/* Secondary CTA */}
