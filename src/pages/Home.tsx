@@ -38,11 +38,14 @@ const Home = () => {
           className="mb-10"
         >
           <p className="text-sm text-muted-foreground font-medium">Good morning,</p>
-          <h1 className="text-3xl font-semibold text-foreground tracking-tight">Rohan</h1>
-          <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800/50">
-            <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-            <p className="text-xs font-medium text-amber-800 dark:text-amber-300">Last test was 14 months ago</p>
-          </div>
+          <h1 className="text-4xl font-semibold text-foreground tracking-tight">Debajyoti</h1>
+          <button 
+            onClick={() => navigate("/chat")}
+            className="mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 transition-transform active:scale-[0.98]"
+          >
+            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            <p className="text-xs font-semibold text-primary">Consult Doctor</p>
+          </button>
         </motion.div>
 
         {/* What brings you here today? */}
@@ -61,10 +64,10 @@ const Home = () => {
               className="bg-card rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
             >
               <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">
-                Consult a<br/><span className="text-[15px] block mt-0.5">doctor</span>
+                Consult a<br/><span className="text-[18px] block mt-0.5">doctor</span>
               </h3>
               <div className="absolute bottom-[-8px] right-[-12px] opacity-90 -rotate-12 drop-shadow-lg scale-110">
-                <ConsultIllustration className="w-[72px] h-[72px]" />
+                <ConsultIllustration className="w-[80px] h-[80px]" />
               </div>
             </motion.div>
 
@@ -74,10 +77,10 @@ const Home = () => {
               className="bg-card rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
             >
               <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">
-                Book<br/><span className="text-[15px] block mt-0.5">checkup</span>
+                Book<br/><span className="text-[18px] block mt-0.5">checkup</span>
               </h3>
               <div className="absolute bottom-[-8px] right-[-12px] opacity-90 rotate-12 drop-shadow-lg scale-110">
-                <HealthIllustration className="w-[72px] h-[72px]" />
+                <HealthIllustration className="w-[80px] h-[80px]" />
               </div>
             </motion.div>
           </div>
