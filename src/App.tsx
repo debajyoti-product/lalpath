@@ -8,6 +8,8 @@ import Home from "./pages/Home.tsx";
 import Chat from "./pages/Chat.tsx";
 import HealthProfile from "./pages/HealthProfile.tsx";
 import Account from "./pages/Account.tsx";
+import History from "./pages/History.tsx";
+import BookTest from "./pages/BookTest.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -24,6 +26,8 @@ const App = () => (
           <Route path="/chat" element={<Chat />} />
           <Route path="/profile" element={<HealthProfile />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/book-test" element={<BookTest />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
