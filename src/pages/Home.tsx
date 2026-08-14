@@ -39,13 +39,6 @@ const Home = () => {
         >
           <p className="text-sm text-muted-foreground font-medium">Good morning,</p>
           <h1 className="text-4xl font-semibold text-foreground tracking-tight">Debajyoti</h1>
-          <button 
-            onClick={() => navigate("/chat")}
-            className="mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 transition-transform active:scale-[0.98]"
-          >
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <p className="text-xs font-semibold text-primary">Consult Doctor</p>
-          </button>
         </motion.div>
 
         {/* What brings you here today? */}
@@ -55,8 +48,8 @@ const Home = () => {
           animate="show"
           className="mb-10"
         >
-          <h2 className="text-lg font-medium text-foreground mb-1 px-1">What brings you here today?</h2>
-          <p className="text-sm text-muted-foreground mb-4 px-1">I want to</p>
+          <h2 className="text-xl font-bold text-foreground mb-1 px-1">What brings you here today?</h2>
+          <p className="text-sm text-muted-foreground mb-4 mt-2 px-1">I want to</p>
           <div className="grid grid-cols-2 gap-3">
             <motion.div
               variants={itemVariant}
@@ -93,38 +86,38 @@ const Home = () => {
           transition={{ delay: 0.25 }}
           className="mb-10"
         >
-          <h2 className="text-lg font-medium text-foreground mb-4 px-1">Insights</h2>
-          <div className="flex gap-3 overflow-x-auto pb-5 -mx-5 px-5 scrollbar-hide snap-x snap-mandatory">
+          <h2 className="text-xl font-bold text-foreground mb-4 px-1">Your report tells us</h2>
+          <div className="grid grid-cols-3 gap-2.5 mb-5">
             {/* LDL High */}
-            <div className="min-w-[200px] shrink-0 snap-start bg-card rounded-card shadow-card border border-border/50 p-4 flex flex-col gap-3">
-              <div className="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center shrink-0">
+            <div className="bg-card rounded-[20px] shadow-sm border border-border/50 p-3 flex flex-col items-center text-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center">
                 <TrendingUp className="w-5 h-5 text-rose-600 dark:text-rose-400" />
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-foreground">LDL Cholesterol</p>
-                <p className="text-xs text-muted-foreground mt-0.5">110 mg/dL · <span className="text-rose-600 dark:text-rose-400 font-medium">High</span></p>
+              <div className="w-full">
+                <p className="text-[12px] font-semibold text-foreground leading-tight">LDL</p>
+                <p className="text-[11px] text-rose-600 dark:text-rose-400 font-medium mt-0.5">High</p>
               </div>
             </div>
 
-            {/* Blood Sugar Optimal */}
-            <div className="min-w-[200px] shrink-0 snap-start bg-card rounded-card shadow-card border border-border/50 p-4 flex flex-col gap-3">
-              <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center shrink-0">
+            {/* HbA1c Optimal */}
+            <div className="bg-card rounded-[20px] shadow-sm border border-border/50 p-3 flex flex-col items-center text-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
                 <Droplets className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-foreground">Fasting Blood Sugar</p>
-                <p className="text-xs text-muted-foreground mt-0.5">95 mg/dL · <span className="text-emerald-600 dark:text-emerald-400 font-medium">Optimal</span></p>
+              <div className="w-full">
+                <p className="text-[12px] font-semibold text-foreground leading-tight">HbA1c</p>
+                <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium mt-0.5">Optimal</p>
               </div>
             </div>
 
             {/* Vitamin D Low */}
-            <div className="min-w-[200px] shrink-0 snap-start bg-card rounded-card shadow-card border border-border/50 p-4 flex flex-col gap-3">
-              <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center shrink-0">
+            <div className="bg-card rounded-[20px] shadow-sm border border-border/50 p-3 flex flex-col items-center text-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
                 <Droplets className="w-5 h-5 text-amber-600 dark:text-amber-400" />
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-foreground">Vitamin D</p>
-                <p className="text-xs text-muted-foreground mt-0.5">18 ng/mL · <span className="text-amber-600 dark:text-amber-400 font-medium">Low</span></p>
+              <div className="w-full">
+                <p className="text-[12px] font-semibold text-foreground leading-tight">Vit. D</p>
+                <p className="text-[11px] text-amber-600 dark:text-amber-400 font-medium mt-0.5">Low</p>
               </div>
             </div>
           </div>
@@ -145,7 +138,7 @@ const Home = () => {
           className="mb-10"
         >
           <h2 className="text-lg font-medium text-foreground mb-4 px-1">For You</h2>
-          <div className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 scrollbar-hide snap-x snap-mandatory">
+          <div className="flex gap-4 overflow-x-auto pb-4 -mr-5 pr-5 scrollbar-hide snap-x snap-mandatory">
             <div
               onClick={() => navigate("/chat?context=high_sugar")}
               className="min-w-[240px] h-[160px] rounded-card shadow-card overflow-hidden relative shrink-0 snap-start cursor-pointer group"
