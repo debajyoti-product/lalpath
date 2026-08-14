@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Send, User as UserIcon, Calendar, CheckCircle2, ThumbsUp, ThumbsDown, Copy, Info, Share2, Plus, Mic } from "lucide-react";
-import { useSearchParams } from "react-router-dom";
+import { Send, User as UserIcon, Calendar, CheckCircle2, ThumbsUp, ThumbsDown, Copy, Info, Share2, Plus, Mic, ArrowLeft } from "lucide-react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import BottomNav from "@/components/BottomNav";
 
 type Message = {
@@ -11,9 +11,31 @@ type Message = {
   isActionable?: boolean;
 };
 
+const AssistantStar = () => (
+  <svg width="72" height="72" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-2xl scale-110 mb-4">
+    <defs>
+      <linearGradient id="starGrad" x1="20" y1="20" x2="80" y2="80">
+        <stop stopColor="hsl(12, 76%, 61%)" />
+        <stop offset="1" stopColor="hsl(20, 80%, 45%)" />
+      </linearGradient>
+      <linearGradient id="starHighlight" x1="20" y1="20" x2="50" y2="50">
+        <stop stopColor="#ffffff" stopOpacity="0.4" />
+        <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
+      </linearGradient>
+    </defs>
+    {[0, 22.5, 45, 67.5, 90, 112.5, 135, 157.5].map((rot) => (
+      <g key={rot} transform={`rotate(${rot} 50 50)`}>
+        <rect x="44" y="10" width="12" height="80" rx="6" fill="url(#starGrad)" />
+        <rect x="44" y="10" width="6" height="80" rx="3" fill="url(#starHighlight)" />
+      </g>
+    ))}
+  </svg>
+);
+
 const Chat = () => {
   const [searchParams] = useSearchParams();
   const context = searchParams.get("context");
+  const navigate = useNavigate();
   
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -48,13 +70,7 @@ const Chat = () => {
         }
       ]);
     } else {
-      setMessages([
-        {
-          id: "1",
-          sender: "ai",
-          text: "Hi there. I'm the WelUp AI. I can help route your symptoms to the right specialist, or answer questions about your past prescriptions. How can I help today?",
-        }
-      ]);
+      setMessages([]);
     }
   }, [context]);
 
@@ -88,41 +104,67 @@ const Chat = () => {
     }, 1000);
   };
 
-  const handleMockDoctorMatch = () => {
-    setMessages(prev => [
-      ...prev,
-      {
-        id: Date.now().toString(),
-        sender: "user",
-        text: "It's been hurting for about 2 weeks, mainly after running. A little bit of swelling.",
-      }
-    ]);
-
-    setTimeout(() => {
-      setMessages(prev => [
-        ...prev,
-        {
-          id: (Date.now() + 1).toString(),
-          sender: "ai",
-          text: "Got it. Based on that, I recommend seeing an Orthopedic Specialist to assess the joint and rule out ligament strain.",
-          isActionable: true,
-        }
-      ]);
-    }, 1200);
-  };
-
   return (
     <div className="min-h-screen bg-[#F9F7F5] dark:bg-zinc-950 flex flex-col relative overflow-hidden">
+      {/* Background Glow */}
+      {messages.length === 0 && !context && (
+        <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-primary/10 blur-[100px] rounded-full pointer-events-none" />
+      )}
+
       {/* Header */}
-      <div className="pt-12 pb-4 px-6 relative z-20 bg-[#F9F7F5]/80 dark:bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-200 dark:border-white/5">
-        <h1 className="text-xl font-medium text-zinc-900 dark:text-zinc-50 tracking-tight text-center">
-          WelUp AI
-        </h1>
+      <div className="pt-12 pb-4 px-6 relative z-20 flex items-center">
+        <button 
+          onClick={() => navigate(-1)} 
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/60 dark:bg-white/5 backdrop-blur-md shadow-sm border border-border transition-transform active:scale-95"
+        >
+          <ArrowLeft className="w-5 h-5 text-foreground" />
+        </button>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-5 pt-6 pb-44 relative z-10 scroll-smooth">
+      <div className="flex-1 overflow-y-auto px-5 pt-2 pb-44 relative z-10 scroll-smooth">
         <div className="max-w-[390px] mx-auto space-y-6">
+          {messages.length === 0 && !context && (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex flex-col items-start px-2 mt-4"
+            >
+              <AssistantStar />
+              
+              <h2 className="text-[32px] font-medium leading-[1.1] text-foreground tracking-tight mb-2">
+                Hi <span className="font-bold text-primary">Debajyoti!</span><br/>
+                <span className="font-bold">How can I help you today?</span>
+              </h2>
+
+              <div className="mt-8">
+                <h3 className="text-[22px] font-bold text-foreground mb-6">
+                  I'm your Health Assistant
+                </h3>
+                <ul className="space-y-4">
+                  <li className="flex items-center gap-4 text-[15px] text-foreground font-medium">
+                     <div className="w-5 h-5 rounded-full border-[1.5px] border-primary flex items-center justify-center shrink-0 shadow-sm">
+                       <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+                     </div>
+                     Match with a doctor for your symptoms
+                  </li>
+                  <li className="flex items-center gap-4 text-[15px] text-foreground font-medium">
+                     <div className="w-5 h-5 rounded-full border-[1.5px] border-primary flex items-center justify-center shrink-0 shadow-sm">
+                       <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+                     </div>
+                     Help understand your lab reports
+                  </li>
+                  <li className="flex items-center gap-4 text-[15px] text-foreground font-medium">
+                     <div className="w-5 h-5 rounded-full border-[1.5px] border-primary flex items-center justify-center shrink-0 shadow-sm">
+                       <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+                     </div>
+                     Answer questions about your prescription
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+          )}
+
           {messages.map((msg) => (
             <motion.div
               key={msg.id}
@@ -192,16 +234,6 @@ const Chat = () => {
               )}
             </motion.div>
           ))}
-          {!context && messages.length === 1 && (
-             <motion.button
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                onClick={handleMockDoctorMatch}
-                className="text-xs font-medium text-primary bg-primary/10 px-4 py-2 rounded-full self-center mx-auto block"
-              >
-                (Mock Response: 2 weeks, swelling)
-             </motion.button>
-          )}
           <div ref={messagesEndRef} />
         </div>
       </div>
@@ -219,7 +251,7 @@ const Chat = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
-              placeholder="Describe your symptom..."
+              placeholder="Ask me anything..."
               className="flex-1 bg-transparent py-4 text-[15px] focus:outline-none text-foreground placeholder:text-muted-foreground"
             />
             <div className="pr-2 pl-2 flex items-center gap-2 flex-shrink-0">
