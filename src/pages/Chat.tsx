@@ -132,6 +132,7 @@ const Chat = () => {
         <h1 className="text-3xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight">
           WelUp AI
         </h1>
+      </div>
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-5 pt-2 pb-44 relative z-10 scroll-smooth">
         <div className="max-w-[390px] mx-auto space-y-6">
