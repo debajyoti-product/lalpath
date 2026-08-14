@@ -53,11 +53,11 @@ const Home = () => {
           <div className="grid grid-cols-2 gap-3">
             <motion.div
               variants={itemVariant}
-              onClick={() => navigate("/chat")}
+              onClick={() => navigate("/chat?query=consult_doctor")}
               className="bg-card rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
             >
               <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">
-                Consult a<br/><span className="text-[18px] block mt-0.5">doctor</span>
+                Consult a<br/><span className="text-[21px] block mt-0.5">doctor</span>
               </h3>
               <div className="absolute bottom-[-8px] right-[-12px] opacity-90 -rotate-12 drop-shadow-lg scale-110">
                 <ConsultIllustration className="w-[80px] h-[80px]" />
@@ -66,11 +66,11 @@ const Home = () => {
 
             <motion.div
               variants={itemVariant}
-              onClick={() => navigate("/book-test")}
+              onClick={() => navigate("/chat?query=book_test")}
               className="bg-card rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
             >
               <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">
-                Book<br/><span className="text-[18px] block mt-0.5">checkup</span>
+                Book<br/><span className="text-[21px] block mt-0.5">checkup</span>
               </h3>
               <div className="absolute bottom-[-8px] right-[-12px] opacity-90 rotate-12 drop-shadow-lg scale-110">
                 <HealthIllustration className="w-[80px] h-[80px]" />

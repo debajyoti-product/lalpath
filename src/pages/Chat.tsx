@@ -41,6 +41,8 @@ const Chat = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const query = searchParams.get("query");
+    
     // Initialize based on context
     if (context === "high_sugar") {
       setMessages([
@@ -67,6 +69,16 @@ const Chat = () => {
           sender: "ai",
           text: "Of course. Metformin is commonly prescribed to manage blood sugar levels. What specific questions do you have about it? Remember I provide general info, not medical advice.",
         }
+      ]);
+    } else if (query === "book_test") {
+      setMessages([
+        { id: "1", sender: "user", text: "I want to book a blood test" },
+        { id: "2", sender: "ai", text: "I can help with that. Are there any specific blood tests you're looking for, or would you like to browse standard health packages?" }
+      ]);
+    } else if (query === "consult_doctor") {
+      setMessages([
+        { id: "1", sender: "user", text: "I want to book a doctor consultation" },
+        { id: "2", sender: "ai", text: "Sure thing. What kind of symptoms are you experiencing so I can match you with the right specialist?" }
       ]);
     } else {
       setMessages([]);
