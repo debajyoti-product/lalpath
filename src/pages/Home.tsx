@@ -55,15 +55,15 @@ const Home = () => {
             <p className="text-sm text-muted-foreground font-medium">Hello,</p>
             <h1 className="text-4xl font-semibold text-primary tracking-tight">Debajyoti</h1>
           </div>
-          {lastChatQuery && (
-            <button 
-              onClick={() => navigate(`/chat?query=${lastChatQuery}`)}
-              className="flex items-center gap-1.5 bg-white/70 dark:bg-white/5 border border-border/60 text-foreground text-xs font-semibold px-3.5 py-2 rounded-full shadow-sm transition-transform active:scale-95"
-            >
-              <History className="w-3.5 h-3.5" />
-              History
-            </button>
-          )}
+          <button 
+            disabled={!lastChatQuery}
+            onClick={() => lastChatQuery && navigate(`/chat?query=${lastChatQuery}`)}
+            className={`w-10 h-10 rounded-full flex items-center justify-center bg-card border border-border/60 shadow-sm transition-all ${
+              !lastChatQuery ? 'opacity-40 cursor-not-allowed' : 'active:scale-95 hover:shadow-md cursor-pointer text-primary'
+            }`}
+          >
+            <History className="w-[18px] h-[18px]" />
+          </button>
         </motion.div>
 
         {/* Chat Module */}
