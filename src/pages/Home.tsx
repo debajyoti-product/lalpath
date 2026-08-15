@@ -101,6 +101,41 @@ const Home = () => {
             </ul>
           </motion.div>
 
+          {/* Compact Action Cards */}
+          <motion.div variants={itemVariant} className="mb-6">
+            <div className="grid grid-cols-2 gap-3">
+              <div
+                onClick={() => {
+                  setLastChatQuery("consult_doctor");
+                  navigate("/chat?query=consult_doctor");
+                }}
+                className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-2.5 relative overflow-hidden h-[80px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
+              >
+                <h3 className="text-[10px] font-semibold text-foreground leading-tight pr-8">
+                  Consult<br/><span className="text-[14px] block mt-0.5">Doctor</span>
+                </h3>
+                <div className="absolute bottom-[-6px] right-[-10px] opacity-90 -rotate-12 drop-shadow-lg scale-90">
+                  <ConsultIllustration className="w-[48px] h-[48px]" />
+                </div>
+              </div>
+
+              <div
+                onClick={() => {
+                  setLastChatQuery("book_test");
+                  navigate("/chat?query=book_test");
+                }}
+                className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-2.5 relative overflow-hidden h-[80px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
+              >
+                <h3 className="text-[10px] font-semibold text-foreground leading-tight pr-8">
+                  Book<br/><span className="text-[14px] block mt-0.5">Checkup</span>
+                </h3>
+                <div className="absolute bottom-[-6px] right-[-10px] opacity-90 rotate-12 drop-shadow-lg scale-90">
+                  <HealthIllustration className="w-[48px] h-[48px]" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           {/* Chat Input */}
           <motion.div variants={itemVariant} className="mb-6">
             <div className="relative flex items-center bg-card border border-border rounded-full shadow-sm">
@@ -125,41 +160,6 @@ const Home = () => {
                 >
                   <Send className="w-3.5 h-3.5 ml-0.5" />
                 </button>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Compact Action Cards */}
-          <motion.div variants={itemVariant}>
-            <div className="grid grid-cols-2 gap-3">
-              <div
-                onClick={() => {
-                  setLastChatQuery("consult_doctor");
-                  navigate("/chat?query=consult_doctor");
-                }}
-                className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-3 relative overflow-hidden h-[100px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
-              >
-                <h3 className="text-[11px] font-semibold text-foreground leading-tight pr-8">
-                  Consult<br/><span className="text-[18px] block mt-0.5">Doctor</span>
-                </h3>
-                <div className="absolute bottom-[-8px] right-[-12px] opacity-90 -rotate-12 drop-shadow-lg scale-90">
-                  <ConsultIllustration className="w-[60px] h-[60px]" />
-                </div>
-              </div>
-
-              <div
-                onClick={() => {
-                  setLastChatQuery("book_test");
-                  navigate("/chat?query=book_test");
-                }}
-                className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-3 relative overflow-hidden h-[100px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
-              >
-                <h3 className="text-[11px] font-semibold text-foreground leading-tight pr-8">
-                  Book<br/><span className="text-[18px] block mt-0.5">Checkup</span>
-                </h3>
-                <div className="absolute bottom-[-8px] right-[-12px] opacity-90 rotate-12 drop-shadow-lg scale-90">
-                  <HealthIllustration className="w-[60px] h-[60px]" />
-                </div>
               </div>
             </div>
           </motion.div>
