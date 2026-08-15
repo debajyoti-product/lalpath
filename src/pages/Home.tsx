@@ -104,7 +104,7 @@ const Home = () => {
           </motion.div>
 
           {/* Compact Action Cards */}
-          <motion.div variants={itemVariant} className="mb-6">
+          <motion.div variants={itemVariant} className="mt-28 mb-3">
             <div className="grid grid-cols-2 gap-2.5">
               <div
                 onClick={() => {
@@ -139,7 +139,7 @@ const Home = () => {
           </motion.div>
 
           {/* Chat Input */}
-          <motion.div variants={itemVariant} className="mt-44 mb-10">
+          <motion.div variants={itemVariant} className="mb-10">
             <div className="relative p-[2px] rounded-full overflow-hidden shadow-lg shadow-primary/20 group">
               <div className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,hsl(var(--primary))_50%,transparent_100%)] opacity-80" />
               <div className="relative flex items-center bg-card rounded-full w-full">
