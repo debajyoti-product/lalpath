@@ -111,7 +111,7 @@ const Chat = () => {
             WelUp AI
           </h1>
           <button 
-            onClick={() => navigate("/home")} 
+            onClick={() => navigate(`/home?historyQuery=${query || context || 'recent'}`)} 
             className="w-10 h-10 flex items-center justify-center rounded-full bg-white/60 dark:bg-white/5 backdrop-blur-md shadow-sm border border-border transition-transform active:scale-95"
           >
             <X className="w-5 h-5 text-foreground" />

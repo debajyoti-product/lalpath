@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import BottomNav from "@/components/BottomNav";
 import { Droplets, TrendingUp, ChevronRight, ArrowRight, FileText, X, Clock, Pill, Send, Plus, Mic, History } from "lucide-react";
 
@@ -15,8 +15,10 @@ import {
 
 const Home = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const historyQuery = searchParams.get("historyQuery");
   const [chatInput, setChatInput] = useState("");
-  const [lastChatQuery, setLastChatQuery] = useState<string | null>(null);
+  const [lastChatQuery, setLastChatQuery] = useState<string | null>(historyQuery);
 
   const handleChatSend = () => {
     if (!chatInput.trim()) return;
