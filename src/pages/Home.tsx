@@ -83,22 +83,22 @@ const Home = () => {
           </motion.h2>
 
           <motion.div variants={itemVariant} className="mb-5 px-1">
-            <ul className="space-y-3">
-              <li className="flex items-center gap-3 text-[13px] text-foreground font-medium">
-                <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                  <Clock className="w-3.5 h-3.5" />
+            <ul className="space-y-3.5">
+              <li className="flex items-center gap-3 text-[14px] text-foreground font-medium">
+                <div className="w-[30px] h-[30px] rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <Clock className="w-4 h-4" />
                 </div>
                 Book doctor consults & blood tests
               </li>
-              <li className="flex items-center gap-3 text-[13px] text-foreground font-medium">
-                <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                  <FileText className="w-3.5 h-3.5" />
+              <li className="flex items-center gap-3 text-[14px] text-foreground font-medium">
+                <div className="w-[30px] h-[30px] rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <FileText className="w-4 h-4" />
                 </div>
                 Get insights on your lab reports
               </li>
-              <li className="flex items-center gap-3 text-[13px] text-foreground font-medium">
-                <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                  <Pill className="w-3.5 h-3.5" />
+              <li className="flex items-center gap-3 text-[14px] text-foreground font-medium">
+                <div className="w-[30px] h-[30px] rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <Pill className="w-4 h-4" />
                 </div>
                 Understand your medications
               </li>
