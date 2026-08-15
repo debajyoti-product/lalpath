@@ -27,7 +27,7 @@ const BottomNav = () => {
               {active && (
                 <motion.div
                   layoutId="bottom-nav-indicator"
-                  className="absolute inset-0 bg-primary/15 dark:bg-primary/20 rounded-[20px]"
+                  className="absolute inset-y-0 -left-[20%] -right-[20%] bg-primary/15 dark:bg-primary/20 rounded-[20px]"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                 />
               )}
