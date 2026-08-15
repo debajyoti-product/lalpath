@@ -41,6 +41,9 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-[#F9F7F5] dark:bg-zinc-950 pb-24 relative overflow-hidden">
+      {/* Top Gradient */}
+      <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-orange-100/80 to-transparent dark:from-orange-900/30 pointer-events-none z-0" />
+      
       <div className="px-5 pt-12 relative z-10 max-w-[390px] mx-auto">
         {/* Header */}
         <motion.div
@@ -136,8 +139,8 @@ const Home = () => {
           </motion.div>
 
           {/* Chat Input */}
-          <motion.div variants={itemVariant} className="mt-10 mb-6">
-            <div className="relative flex items-center bg-card border border-border rounded-full shadow-sm">
+          <motion.div variants={itemVariant} className="mt-16 mb-6">
+            <div className="relative flex items-center bg-card border border-border rounded-full shadow-md shadow-black/5 dark:shadow-white/5">
               <button className="pl-4 pr-2 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0">
                 <Plus className="w-5 h-5" />
               </button>
