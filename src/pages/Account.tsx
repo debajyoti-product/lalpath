@@ -73,7 +73,10 @@ const Account = () => {
           className="bg-white/60 dark:bg-white/5 backdrop-blur-xl rounded-[24px] border border-white/80 dark:border-white/10 shadow-sm overflow-hidden"
         >
           <div className="divide-y divide-zinc-200 dark:divide-white/10">
-            <button className="w-full flex items-center justify-between p-5 hover:bg-white/40 dark:hover:bg-white/5 transition-colors">
+            <button 
+              onClick={() => navigate("/reports")}
+              className="w-full flex items-center justify-between p-5 hover:bg-white/40 dark:hover:bg-white/5 transition-colors"
+            >
               <div className="flex items-center gap-3">
                  <FileText className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
                  <span className="text-base font-medium text-zinc-900 dark:text-zinc-100">Health reports</span>

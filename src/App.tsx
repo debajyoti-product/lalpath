@@ -13,6 +13,7 @@ import BookTest from "./pages/BookTest.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import EditProfile from "./pages/EditProfile.tsx";
 import Family from "./pages/Family.tsx";
+import Reports from "./pages/Reports.tsx";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/book-test" element={<BookTest />} />
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/family" element={<Family />} />
+          <Route path="/reports" element={<Reports />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
