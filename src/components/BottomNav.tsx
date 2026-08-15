@@ -22,12 +22,12 @@ const BottomNav = () => {
             <button
               key={path}
               onClick={() => navigate(path)}
-              className="relative flex items-center justify-center py-2.5 px-3 transition-all"
+              className="relative flex items-center justify-center py-2.5 w-[90px] transition-all"
             >
               {active && (
                 <motion.div
                   layoutId="bottom-nav-indicator"
-                  className="absolute inset-y-0 -left-[20%] -right-[20%] bg-primary/15 dark:bg-primary/20 rounded-[20px]"
+                  className="absolute inset-0 bg-primary/15 dark:bg-primary/20 rounded-[20px]"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                 />
               )}
