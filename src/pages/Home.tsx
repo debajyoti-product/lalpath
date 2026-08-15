@@ -107,7 +107,7 @@ const Home = () => {
 
           <div className="mt-auto">
             {/* Compact Action Cards */}
-            <motion.div variants={itemVariant} className="mb-3">
+            <motion.div variants={itemVariant} className="mb-8">
               <div className="grid grid-cols-2 gap-2.5">
                 <div
                   onClick={() => {
