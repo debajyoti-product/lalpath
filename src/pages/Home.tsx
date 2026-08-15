@@ -108,19 +108,19 @@ const Home = () => {
           <div className="mt-auto">
             {/* Compact Action Cards */}
             <motion.div variants={itemVariant} className="mb-8">
-              <div className="grid grid-cols-2 gap-2.5">
+              <div className="grid grid-cols-2 gap-3">
                 <div
                   onClick={() => {
                     setLastChatQuery("consult_doctor");
                     navigate("/chat?query=consult_doctor");
                   }}
-                  className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-2 relative overflow-hidden h-[64px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
+                  className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-2.5 relative overflow-hidden h-[74px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
                 >
-                  <h3 className="text-[11px] font-semibold text-foreground leading-tight pr-6">
-                    Consult<br/><span className="text-[15px] block mt-0.5">Doctor</span>
+                  <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-6">
+                    Consult<br/><span className="text-[17px] block mt-0.5">Doctor</span>
                   </h3>
-                  <div className="absolute bottom-[-4px] right-[-8px] opacity-90 -rotate-12 drop-shadow-lg scale-90">
-                    <ConsultIllustration className="w-[38px] h-[38px]" />
+                  <div className="absolute bottom-[-4px] right-[-6px] opacity-90 -rotate-12 drop-shadow-lg scale-100">
+                    <ConsultIllustration className="w-[44px] h-[44px]" />
                   </div>
                 </div>
 
@@ -129,13 +129,13 @@ const Home = () => {
                     setLastChatQuery("book_test");
                     navigate("/chat?query=book_test");
                   }}
-                  className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-2 relative overflow-hidden h-[64px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
+                  className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-2.5 relative overflow-hidden h-[74px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
                 >
-                  <h3 className="text-[11px] font-semibold text-foreground leading-tight pr-6">
-                    Book<br/><span className="text-[15px] block mt-0.5">Checkup</span>
+                  <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-6">
+                    Book<br/><span className="text-[17px] block mt-0.5">Checkup</span>
                   </h3>
-                  <div className="absolute bottom-[-4px] right-[-8px] opacity-90 rotate-12 drop-shadow-lg scale-90">
-                    <HealthIllustration className="w-[38px] h-[38px]" />
+                  <div className="absolute bottom-[-4px] right-[-6px] opacity-90 rotate-12 drop-shadow-lg scale-100">
+                    <HealthIllustration className="w-[44px] h-[44px]" />
                   </div>
                 </div>
               </div>
