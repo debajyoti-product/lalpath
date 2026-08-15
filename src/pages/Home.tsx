@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import BottomNav from "@/components/BottomNav";
-import { Droplets, TrendingUp, ChevronRight, ArrowRight, FileText, X, Gift } from "lucide-react";
+import { Droplets, TrendingUp, ChevronRight, ArrowRight, FileText, X, Clock, Pill, Send, Plus, Mic, History } from "lucide-react";
 
 import hba1cImg from "@/assets/content/hba1c.jpg";
 import metforminImg from "@/assets/content/metformin.jpg";
@@ -14,17 +15,27 @@ import {
 
 const Home = () => {
   const navigate = useNavigate();
+  const [chatInput, setChatInput] = useState("");
+  const [lastChatQuery, setLastChatQuery] = useState<string | null>(null);
+
+  const handleChatSend = () => {
+    if (!chatInput.trim()) return;
+    const query = chatInput;
+    setChatInput("");
+    setLastChatQuery("free_chat");
+    navigate(`/chat?freeText=${encodeURIComponent(query)}`);
+  };
 
   const staggerContainer = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 },
+      transition: { staggerChildren: 0.08 },
     },
   };
 
   const itemVariant = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     show: { opacity: 1, y: 0 },
   };
 
@@ -35,48 +46,123 @@ const Home = () => {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-10"
+          className="mb-4 flex items-start justify-between"
         >
-          <p className="text-sm text-muted-foreground font-medium">Good morning,</p>
-          <h1 className="text-4xl font-semibold text-foreground tracking-tight">Debajyoti</h1>
+          <div>
+            <h1 className="text-3xl font-semibold text-foreground tracking-tight">
+              Hello <span className="text-primary">Debajyoti</span>
+            </h1>
+          </div>
+          {lastChatQuery && (
+            <button 
+              onClick={() => navigate(`/chat?query=${lastChatQuery}`)}
+              className="flex items-center gap-1.5 bg-white/70 dark:bg-white/5 border border-border/60 text-foreground text-xs font-semibold px-3.5 py-2 rounded-full shadow-sm transition-transform active:scale-95"
+            >
+              <History className="w-3.5 h-3.5" />
+              History
+            </button>
+          )}
         </motion.div>
 
-        {/* What brings you here today? */}
+        {/* Chat Module */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="show"
-          className="mb-10"
+          className="mb-6"
         >
-          <h2 className="text-xl font-bold text-foreground mb-1 px-1">What brings you here today?</h2>
-          <p className="text-sm text-muted-foreground mb-4 mt-2 px-1">I want to</p>
-          <div className="grid grid-cols-2 gap-3">
-            <motion.div
-              variants={itemVariant}
-              onClick={() => navigate("/chat?query=consult_doctor")}
-              className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
-            >
-              <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">
-                Consult<br/><span className="text-[23px] block mt-0.5">Doctor</span>
-              </h3>
-              <div className="absolute bottom-[-8px] right-[-12px] opacity-90 -rotate-12 drop-shadow-lg scale-110">
-                <ConsultIllustration className="w-[80px] h-[80px]" />
-              </div>
-            </motion.div>
+          <motion.h2 
+            variants={itemVariant}
+            className="text-lg font-bold text-foreground mb-4 px-1"
+          >
+            How can I help you today?
+          </motion.h2>
 
-            <motion.div
-              variants={itemVariant}
-              onClick={() => navigate("/chat?query=book_test")}
-              className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-4 relative overflow-hidden h-[130px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
-            >
-              <h3 className="text-[13px] font-semibold text-foreground leading-tight pr-8">
-                Book<br/><span className="text-[23px] block mt-0.5">Checkup</span>
-              </h3>
-              <div className="absolute bottom-[-8px] right-[-12px] opacity-90 rotate-12 drop-shadow-lg scale-110">
-                <HealthIllustration className="w-[80px] h-[80px]" />
+          <motion.div variants={itemVariant} className="mb-5 px-1">
+            <ul className="space-y-3">
+              <li className="flex items-center gap-3 text-[13px] text-foreground font-medium">
+                <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <Clock className="w-3.5 h-3.5" />
+                </div>
+                Book doctor consults & blood tests
+              </li>
+              <li className="flex items-center gap-3 text-[13px] text-foreground font-medium">
+                <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <FileText className="w-3.5 h-3.5" />
+                </div>
+                Get insights on your lab reports
+              </li>
+              <li className="flex items-center gap-3 text-[13px] text-foreground font-medium">
+                <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <Pill className="w-3.5 h-3.5" />
+                </div>
+                Understand your medications
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Chat Input */}
+          <motion.div variants={itemVariant} className="mb-6">
+            <div className="relative flex items-center bg-card border border-border rounded-full shadow-sm">
+              <button className="pl-4 pr-2 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0">
+                <Plus className="w-5 h-5" />
+              </button>
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleChatSend()}
+                placeholder="Ask me anything..."
+                className="flex-1 bg-transparent py-3.5 text-[14px] focus:outline-none text-foreground placeholder:text-muted-foreground"
+              />
+              <div className="pr-2 pl-2 flex items-center gap-2 flex-shrink-0">
+                <button className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Mic className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={handleChatSend}
+                  className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center transition-transform active:scale-95"
+                >
+                  <Send className="w-3.5 h-3.5 ml-0.5" />
+                </button>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
+
+          {/* Compact Action Cards */}
+          <motion.div variants={itemVariant}>
+            <div className="grid grid-cols-2 gap-3">
+              <div
+                onClick={() => {
+                  setLastChatQuery("consult_doctor");
+                  navigate("/chat?query=consult_doctor");
+                }}
+                className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-3 relative overflow-hidden h-[100px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
+              >
+                <h3 className="text-[11px] font-semibold text-foreground leading-tight pr-8">
+                  Consult<br/><span className="text-[18px] block mt-0.5">Doctor</span>
+                </h3>
+                <div className="absolute bottom-[-8px] right-[-12px] opacity-90 -rotate-12 drop-shadow-lg scale-90">
+                  <ConsultIllustration className="w-[60px] h-[60px]" />
+                </div>
+              </div>
+
+              <div
+                onClick={() => {
+                  setLastChatQuery("book_test");
+                  navigate("/chat?query=book_test");
+                }}
+                className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-3 relative overflow-hidden h-[100px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
+              >
+                <h3 className="text-[11px] font-semibold text-foreground leading-tight pr-8">
+                  Book<br/><span className="text-[18px] block mt-0.5">Checkup</span>
+                </h3>
+                <div className="absolute bottom-[-8px] right-[-12px] opacity-90 rotate-12 drop-shadow-lg scale-90">
+                  <HealthIllustration className="w-[60px] h-[60px]" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Insights Section */}

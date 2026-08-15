@@ -2,15 +2,9 @@ import { Home, HeartPulse, User } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-const ChatStarIcon = ({ size = 22, className = "", strokeWidth = 1.8 }: { size?: number, className?: string, strokeWidth?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93"/>
-  </svg>
-);
 
 const tabs = [
   { icon: Home, label: "Home", path: "/home" },
-  { icon: ChatStarIcon, label: "welUp AI", path: "/chat" },
   { icon: HeartPulse, label: "Health", path: "/profile" },
   { icon: User, label: "Account", path: "/account" },
 ];
