@@ -105,19 +105,19 @@ const Home = () => {
 
           {/* Compact Action Cards */}
           <motion.div variants={itemVariant} className="mb-6">
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2.5">
               <div
                 onClick={() => {
                   setLastChatQuery("consult_doctor");
                   navigate("/chat?query=consult_doctor");
                 }}
-                className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-2.5 relative overflow-hidden h-[80px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
+                className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-2 relative overflow-hidden h-[64px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
               >
-                <h3 className="text-[10px] font-semibold text-foreground leading-tight pr-8">
-                  Consult<br/><span className="text-[14px] block mt-0.5">Doctor</span>
+                <h3 className="text-[9px] font-semibold text-foreground leading-tight pr-6">
+                  Consult<br/><span className="text-[12px] block mt-0.5">Doctor</span>
                 </h3>
-                <div className="absolute bottom-[-6px] right-[-10px] opacity-90 -rotate-12 drop-shadow-lg scale-90">
-                  <ConsultIllustration className="w-[48px] h-[48px]" />
+                <div className="absolute bottom-[-4px] right-[-8px] opacity-90 -rotate-12 drop-shadow-lg scale-90">
+                  <ConsultIllustration className="w-[38px] h-[38px]" />
                 </div>
               </div>
 
@@ -126,13 +126,13 @@ const Home = () => {
                   setLastChatQuery("book_test");
                   navigate("/chat?query=book_test");
                 }}
-                className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-2.5 relative overflow-hidden h-[80px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
+                className="bg-card bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 rounded-card shadow-card p-2 relative overflow-hidden h-[64px] flex flex-col justify-between cursor-pointer group transition-transform active:scale-[0.98] border border-border/50"
               >
-                <h3 className="text-[10px] font-semibold text-foreground leading-tight pr-8">
-                  Book<br/><span className="text-[14px] block mt-0.5">Checkup</span>
+                <h3 className="text-[9px] font-semibold text-foreground leading-tight pr-6">
+                  Book<br/><span className="text-[12px] block mt-0.5">Checkup</span>
                 </h3>
-                <div className="absolute bottom-[-6px] right-[-10px] opacity-90 rotate-12 drop-shadow-lg scale-90">
-                  <HealthIllustration className="w-[48px] h-[48px]" />
+                <div className="absolute bottom-[-4px] right-[-8px] opacity-90 rotate-12 drop-shadow-lg scale-90">
+                  <HealthIllustration className="w-[38px] h-[38px]" />
                 </div>
               </div>
             </div>
