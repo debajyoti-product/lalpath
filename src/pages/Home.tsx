@@ -49,9 +49,8 @@ const Home = () => {
           className="mb-4 flex items-start justify-between"
         >
           <div>
-            <h1 className="text-3xl font-semibold text-foreground tracking-tight">
-              Hello <span className="text-primary">Debajyoti</span>
-            </h1>
+            <p className="text-sm text-muted-foreground font-medium">Hello,</p>
+            <h1 className="text-4xl font-semibold text-primary tracking-tight">Debajyoti</h1>
           </div>
           {lastChatQuery && (
             <button 
@@ -73,7 +72,7 @@ const Home = () => {
         >
           <motion.h2 
             variants={itemVariant}
-            className="text-lg font-bold text-foreground mb-4 px-1"
+            className="text-xl font-bold text-foreground mb-4 px-1"
           >
             How can I help you today?
           </motion.h2>
@@ -137,7 +136,7 @@ const Home = () => {
           </motion.div>
 
           {/* Chat Input */}
-          <motion.div variants={itemVariant} className="mb-6">
+          <motion.div variants={itemVariant} className="mt-5 mb-6">
             <div className="relative flex items-center bg-card border border-border rounded-full shadow-sm">
               <button className="pl-4 pr-2 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0">
                 <Plus className="w-5 h-5" />
