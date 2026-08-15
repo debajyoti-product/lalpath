@@ -136,7 +136,7 @@ const Home = () => {
           </motion.div>
 
           {/* Chat Input */}
-          <motion.div variants={itemVariant} className="mt-5 mb-6">
+          <motion.div variants={itemVariant} className="mt-10 mb-6">
             <div className="relative flex items-center bg-card border border-border rounded-full shadow-sm">
               <button className="pl-4 pr-2 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0">
                 <Plus className="w-5 h-5" />
