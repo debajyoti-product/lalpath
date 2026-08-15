@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Star, ChevronRight, FileUp, Plus, X, Calendar as CalendarIcon, ArrowLeft } from "lucide-react";
+import { Sparkles, Lock, ChevronRight, FileUp, Plus, X, Calendar as CalendarIcon, ArrowLeft } from "lucide-react";
 import { Drawer, DrawerContent, DrawerTrigger, DrawerClose } from "@/components/ui/drawer";
 import BottomNav from "@/components/BottomNav";
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, CartesianGrid, Tooltip } from "recharts";
@@ -35,6 +35,7 @@ const HealthProfile = () => {
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [logValue, setLogValue] = useState("");
+  const [isInsightsUnlocked, setIsInsightsUnlocked] = useState(false);
 
   const handleLogSubmit = () => {
     // Mock save
@@ -57,12 +58,12 @@ const HealthProfile = () => {
         {/* Action Cards (CTAs) */}
         <div className="grid grid-cols-2 gap-3 mb-6">
            <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
-             <DrawerTrigger asChild>
-               <div className="bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 bg-card rounded-card shadow-card p-3 h-[90px] flex flex-col justify-between cursor-pointer border border-border/50 transition-transform active:scale-[0.98]">
+              <DrawerTrigger asChild>
+               <div className="bg-card rounded-card shadow-card p-3 h-[90px] flex flex-col justify-between cursor-pointer border border-border/50 transition-transform active:scale-[0.98]">
                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                    <Plus className="w-4 h-4 text-primary" />
                  </div>
-                 <h3 className="text-[13px] font-semibold text-foreground">Add Manual</h3>
+                 <h3 className="text-[13px] font-semibold text-foreground">Log Vitals</h3>
                </div>
              </DrawerTrigger>
              <DrawerContent className="bg-[#F9F7F5] dark:bg-zinc-950 border-t border-zinc-200 dark:border-white/10">
@@ -117,7 +118,10 @@ const HealthProfile = () => {
               </DrawerContent>
            </Drawer>
 
-           <div className="bg-gradient-to-tr from-orange-100/60 to-transparent dark:from-orange-900/20 bg-card rounded-card shadow-card p-3 h-[90px] flex flex-col justify-between cursor-pointer border border-border/50 transition-transform active:scale-[0.98]">
+           <div 
+             onClick={() => setIsInsightsUnlocked(true)}
+             className="bg-card rounded-card shadow-card p-3 h-[90px] flex flex-col justify-between cursor-pointer border border-border/50 transition-transform active:scale-[0.98]"
+           >
              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                <FileUp className="w-4 h-4 text-primary" />
              </div>
@@ -128,9 +132,9 @@ const HealthProfile = () => {
         {/* Insights Card */}
         <div className="mb-8 relative group">
           <div className="absolute inset-0 bg-white/60 dark:bg-white/5 backdrop-blur-xl rounded-[20px] border border-white/80 dark:border-white/10 shadow-sm" />
-          <div className="relative p-4 flex gap-3 items-start">
+          <div className={`relative p-4 flex gap-3 items-start ${!isInsightsUnlocked ? 'filter blur-[3px] opacity-40 pointer-events-none select-none' : ''}`}>
              <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center shrink-0 mt-0.5">
-                <Star className="w-4 h-4 text-amber-600 dark:text-amber-400 fill-amber-600 dark:fill-amber-400" />
+                <Sparkles className="w-4 h-4 text-amber-600 dark:text-amber-400 fill-amber-600 dark:fill-amber-400" />
              </div>
              <div>
                <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 block mb-1">Insights</span>
@@ -139,49 +143,64 @@ const HealthProfile = () => {
                </p>
              </div>
           </div>
+          {!isInsightsUnlocked && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10">
+              <Lock className="w-6 h-6 text-zinc-500 mb-2" />
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 font-medium px-4 text-center">Upload your latest reports to unlock insights</p>
+            </div>
+          )}
         </div>
 
         {/* Trends Section */}
         <div className="mb-8">
           <h3 className="text-xl font-bold text-foreground mb-3 px-1">Trends</h3>
           
-          {/* Pills */}
-          <div className="flex gap-2 overflow-x-auto pb-3 scrollbar-hide px-1">
-            <button className="px-4 py-1.5 rounded-full bg-primary text-white text-xs font-medium shrink-0">Blood Sugar</button>
-            <button className="px-4 py-1.5 rounded-full bg-card border border-border text-foreground text-xs font-medium shrink-0">LDL</button>
-            <button className="px-4 py-1.5 rounded-full bg-card border border-border text-foreground text-xs font-medium shrink-0">Vit. D</button>
-          </div>
-
-          {/* Trend Graph */}
-          <div className="bg-card rounded-[20px] p-4 border border-border/50 shadow-sm mb-4 h-[180px]">
-            <div className="h-full w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={historyData} margin={{ top: 5, right: 5, bottom: 0, left: -25 }}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(150, 150, 150, 0.2)" />
-                  <XAxis dataKey="date" tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} axisLine={false} tickLine={false} dy={10} />
-                  <YAxis tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} axisLine={false} tickLine={false} domain={[85, 105]} />
-                  <Tooltip 
-                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                    formatter={(val: number) => [`${val} mg/dL`, 'Blood Sugar']}
-                    labelStyle={{ color: 'black', fontWeight: 'bold', marginBottom: '4px' }}
-                  />
-                  <Line 
-                    type="monotone" 
-                    dataKey="value" 
-                    stroke="#10b981" 
-                    strokeWidth={3} 
-                    dot={{ r: 4, fill: "#10b981", stroke: "white", strokeWidth: 2 }}
-                    activeDot={{ r: 6, fill: "#10b981", stroke: "white", strokeWidth: 2 }}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+          {!isInsightsUnlocked ? (
+            <div className="bg-card rounded-[20px] p-6 border border-border/50 shadow-sm h-[200px] flex flex-col items-center justify-center text-center">
+              <p className="text-[17px] font-medium text-muted-foreground mb-1">No trends available</p>
+              <p className="text-[13px] text-muted-foreground/70 px-4">Add your past reports in profile to enable trends</p>
             </div>
-          </div>
+          ) : (
+            <>
+              {/* Pills */}
+              <div className="flex gap-2 overflow-x-auto pb-3 scrollbar-hide px-1">
+                <button className="px-4 py-1.5 rounded-full bg-primary text-white text-xs font-medium shrink-0">Blood Sugar</button>
+                <button className="px-4 py-1.5 rounded-full bg-card border border-border text-foreground text-xs font-medium shrink-0">LDL</button>
+                <button className="px-4 py-1.5 rounded-full bg-card border border-border text-foreground text-xs font-medium shrink-0">Vit. D</button>
+              </div>
 
-          {/* Secondary CTA */}
-          <button className="w-full bg-card border border-primary/20 text-primary text-sm font-semibold py-3.5 rounded-full shadow-sm transition-transform active:scale-[0.98]">
-            Check detail health trends
-          </button>
+              {/* Trend Graph */}
+              <div className="bg-card rounded-[20px] p-4 border border-border/50 shadow-sm mb-4 h-[180px]">
+                <div className="h-full w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={historyData} margin={{ top: 5, right: 5, bottom: 0, left: -25 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(150, 150, 150, 0.2)" />
+                      <XAxis dataKey="date" tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} axisLine={false} tickLine={false} dy={10} />
+                      <YAxis tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} axisLine={false} tickLine={false} domain={[85, 105]} />
+                      <Tooltip 
+                        contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                        formatter={(val: number) => [`${val} mg/dL`, 'Blood Sugar']}
+                        labelStyle={{ color: 'black', fontWeight: 'bold', marginBottom: '4px' }}
+                      />
+                      <Line 
+                        type="monotone" 
+                        dataKey="value" 
+                        stroke="#10b981" 
+                        strokeWidth={3} 
+                        dot={{ r: 4, fill: "#10b981", stroke: "white", strokeWidth: 2 }}
+                        activeDot={{ r: 6, fill: "#10b981", stroke: "white", strokeWidth: 2 }}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
+              {/* Secondary CTA */}
+              <button className="w-full bg-card border border-primary/20 text-primary text-sm font-semibold py-3.5 rounded-full shadow-sm transition-transform active:scale-[0.98]">
+                Check detail health trends
+              </button>
+            </>
+          )}
         </div>
       </div>
 
