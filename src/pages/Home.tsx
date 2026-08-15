@@ -139,29 +139,32 @@ const Home = () => {
           </motion.div>
 
           {/* Chat Input */}
-          <motion.div variants={itemVariant} className="mt-16 mb-6">
-            <div className="relative flex items-center bg-card border border-border rounded-full shadow-md shadow-black/5 dark:shadow-white/5">
-              <button className="pl-4 pr-2 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0">
-                <Plus className="w-5 h-5" />
-              </button>
-              <input
-                type="text"
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleChatSend()}
-                placeholder="Ask me anything..."
-                className="flex-1 bg-transparent py-3.5 text-[14px] focus:outline-none text-foreground placeholder:text-muted-foreground"
-              />
-              <div className="pr-2 pl-2 flex items-center gap-2 flex-shrink-0">
-                <button className="text-muted-foreground hover:text-foreground transition-colors">
-                  <Mic className="w-5 h-5" />
+          <motion.div variants={itemVariant} className="mt-28 mb-8">
+            <div className="relative p-[2px] rounded-full overflow-hidden shadow-lg shadow-primary/20 group">
+              <div className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,hsl(var(--primary))_50%,transparent_100%)] opacity-80" />
+              <div className="relative flex items-center bg-card rounded-full w-full">
+                <button className="pl-4 pr-2 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0">
+                  <Plus className="w-5 h-5" />
                 </button>
-                <button
-                  onClick={handleChatSend}
-                  className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center transition-transform active:scale-95"
-                >
-                  <Send className="w-3.5 h-3.5 ml-0.5" />
-                </button>
+                <input
+                  type="text"
+                  value={chatInput}
+                  onChange={(e) => setChatInput(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleChatSend()}
+                  placeholder="Ask me anything..."
+                  className="flex-1 bg-transparent py-4 text-[14.5px] focus:outline-none text-foreground placeholder:text-muted-foreground"
+                />
+                <div className="pr-2 pl-2 flex items-center gap-2 flex-shrink-0">
+                  <button className="text-muted-foreground hover:text-foreground transition-colors">
+                    <Mic className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={handleChatSend}
+                    className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center transition-transform active:scale-95"
+                  >
+                    <Send className="w-4 h-4 ml-0.5" />
+                  </button>
+                </div>
               </div>
             </div>
           </motion.div>
