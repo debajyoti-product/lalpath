@@ -35,12 +35,17 @@ const HealthProfile = () => {
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [logValue, setLogValue] = useState("");
+  const [selectedBiomarker, setSelectedBiomarker] = useState("Fasting Blood Sugar");
+  const [bpSystolic, setBpSystolic] = useState("");
+  const [bpDiastolic, setBpDiastolic] = useState("");
   const [isInsightsUnlocked, setIsInsightsUnlocked] = useState(false);
 
   const handleLogSubmit = () => {
     // Mock save
     setIsDrawerOpen(false);
     setLogValue("");
+    setBpSystolic("");
+    setBpDiastolic("");
   };
 
   return (
@@ -80,36 +85,57 @@ const HealthProfile = () => {
                   <div className="space-y-4 mb-8">
                     <div>
                       <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1.5 block">Biomarker</label>
-                      <select className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-2 focus:ring-amber-500/20 shadow-sm appearance-none">
+                      <select 
+                        value={selectedBiomarker}
+                        onChange={(e) => setSelectedBiomarker(e.target.value)}
+                        className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-2 focus:ring-amber-500/20 shadow-sm appearance-none"
+                      >
                         <option>Fasting Blood Sugar</option>
                         <option>Blood Pressure</option>
-                        <option>Weight</option>
                       </select>
                     </div>
-                    <div className="flex gap-4">
-                      <div className="flex-1">
-                        <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1.5 block">Value</label>
-                        <input 
-                          type="number" 
-                          value={logValue}
-                          onChange={(e) => setLogValue(e.target.value)}
-                          placeholder="e.g. 95" 
-                          className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-2 focus:ring-amber-500/20 shadow-sm"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1.5 block">Date</label>
-                        <div className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-[15px] shadow-sm flex items-center justify-between text-zinc-500">
-                          <span>Today</span>
-                          <CalendarIcon className="w-4 h-4" />
+                    <div>
+                      {selectedBiomarker === "Blood Pressure" ? (
+                        <div className="flex gap-3">
+                          <div className="flex-1">
+                            <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1.5 block">Systole</label>
+                            <input 
+                              type="number" 
+                              value={bpSystolic}
+                              onChange={(e) => setBpSystolic(e.target.value)}
+                              placeholder="e.g. 120" 
+                              className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-2 focus:ring-amber-500/20 shadow-sm"
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1.5 block">Diastole</label>
+                            <input 
+                              type="number" 
+                              value={bpDiastolic}
+                              onChange={(e) => setBpDiastolic(e.target.value)}
+                              placeholder="e.g. 80" 
+                              className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-2 focus:ring-amber-500/20 shadow-sm"
+                            />
+                          </div>
                         </div>
-                      </div>
+                      ) : (
+                        <div>
+                          <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1.5 block">Value</label>
+                          <input 
+                            type="number" 
+                            value={logValue}
+                            onChange={(e) => setLogValue(e.target.value)}
+                            placeholder="e.g. 95" 
+                            className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-[15px] focus:outline-none focus:ring-2 focus:ring-amber-500/20 shadow-sm"
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
                   
                   <button 
                     onClick={handleLogSubmit}
-                    disabled={!logValue}
+                    disabled={selectedBiomarker === "Blood Pressure" ? (!bpSystolic || !bpDiastolic) : !logValue}
                     className="w-full bg-amber-600 disabled:opacity-50 text-white text-base font-medium py-4 rounded-[20px] transition-transform active:scale-[0.98] shadow-lg shadow-amber-600/20"
                   >
                     Save Reading
