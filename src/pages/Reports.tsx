@@ -29,9 +29,9 @@ const Reports = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
-          className="w-32 h-32 rounded-full bg-white dark:bg-zinc-900 shadow-sm flex items-center justify-center mb-6"
+          className="mb-8 drop-shadow-xl"
         >
-          <FileText className="w-12 h-12 text-zinc-300 dark:text-zinc-600 stroke-[1.5]" />
+          <FileText className="w-28 h-28 text-zinc-300 dark:text-zinc-600 stroke-[1] fill-white dark:fill-zinc-900" />
         </motion.div>
         
         <motion.h2 
@@ -53,7 +53,7 @@ const Reports = () => {
         </motion.p>
       </div>
 
-      <div className="px-5 pb-8 relative z-20">
+      <div className="px-[30%] pb-8 relative z-20">
         <button className="w-full bg-primary text-white text-[15px] font-semibold py-4 rounded-full shadow-md shadow-primary/20 transition-transform active:scale-[0.98] flex items-center justify-center gap-2">
           <Upload className="w-5 h-5" />
           Upload
