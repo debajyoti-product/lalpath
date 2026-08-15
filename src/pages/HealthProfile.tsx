@@ -146,7 +146,7 @@ const HealthProfile = () => {
           {!isInsightsUnlocked && (
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10">
               <Lock className="w-6 h-6 text-zinc-500 mb-2" />
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 font-medium px-4 text-center">Upload your latest reports to unlock insights</p>
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 font-medium px-4 text-center">Upload your latest report to unlock insights</p>
             </div>
           )}
         </div>
