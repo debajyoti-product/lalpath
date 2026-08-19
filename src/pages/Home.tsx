@@ -102,7 +102,7 @@ const Home = () => {
                 <img 
                   src="/banner.png" 
                   alt="Dr Lal PathLabs" 
-                  className="h-[72px] w-auto object-contain mix-blend-multiply opacity-90 -mt-6 -mb-6"
+                  className="h-[86px] w-auto object-contain mix-blend-multiply opacity-90 -mt-7 -mb-7"
                 />
 
                 <div className="flex justify-between items-center w-full relative z-10">
