@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import BottomNav from "@/components/BottomNav";
-import { Search, MapPin, Mic, MessageSquareText, Phone, ShoppingCart, Wallet, ChevronDown, User, Plus, Check } from "lucide-react";
+import { Search, MapPin, Mic, MessageSquareText, Phone, ShoppingCart, Wallet, ChevronDown, User, Plus, Check, UploadCloud } from "lucide-react";
 
 const bookedTests = [
   { name: "Complete blood count", params: 83, price: 599, mrp: 999 },
@@ -18,6 +18,7 @@ const Home = () => {
   const [showAddMemberDrawer, setShowAddMemberDrawer] = useState(false);
   const [selectedGender, setSelectedGender] = useState("Male");
   const [selectedRelation, setSelectedRelation] = useState("");
+  const [showCallbackSheet, setShowCallbackSheet] = useState(false);
   const [exclusiveTab, setExclusiveTab] = useState("Women");
 
   const exclusiveTests = {
@@ -139,7 +140,7 @@ const Home = () => {
                 <span className="text-[12px] font-semibold text-foreground">Chat support</span>
               </div>
               <div 
-                onClick={() => window.location.href = "tel:1800123456"}
+                onClick={() => setShowCallbackSheet(true)}
                 className="flex flex-col items-center gap-1.5 cursor-pointer active:scale-95 transition-transform group"
               >
                 <div className="w-[48px] h-[48px] rounded-full bg-[#ffcc00] text-primary flex items-center justify-center shadow-md shadow-[#ffcc00]/20 group-hover:bg-[#ffcc00]/90">
@@ -477,6 +478,77 @@ const Home = () => {
           </motion.div>
         </div>
       )}
+
+      {/* Callback Sheet */}
+      <AnimatePresence>
+        {showCallbackSheet && (
+          <div className="fixed inset-0 z-[100] flex flex-col justify-end max-w-[390px] mx-auto">
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              onClick={() => setShowCallbackSheet(false)}
+            />
+            <motion.div 
+              initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="relative w-full bg-card dark:bg-zinc-950 rounded-t-[2rem] shadow-2xl overflow-hidden flex flex-col p-5 pb-8"
+            >
+              <div className="w-12 h-1.5 bg-border rounded-full mx-auto mt-[-4px] mb-5" />
+              <h3 className="text-[18px] font-bold text-foreground mb-5">Request a Callback</h3>
+              
+              <div className="flex flex-col gap-4">
+                {/* Name */}
+                <div className="flex flex-col gap-2">
+                  <label className="text-[13px] font-semibold text-foreground">Name</label>
+                  <input 
+                    type="text" 
+                    value="Debajyoti Biswas"
+                    readOnly
+                    className="w-full bg-muted/50 border border-border rounded-xl px-4 py-3.5 text-[15px] focus:outline-none text-foreground font-medium"
+                  />
+                </div>
+                
+                {/* Phone */}
+                <div className="flex flex-col gap-2">
+                  <label className="text-[13px] font-semibold text-foreground">Phone Number</label>
+                  <input 
+                    type="text" 
+                    value="+91 9876543210"
+                    readOnly
+                    className="w-full bg-muted/50 border border-border rounded-xl px-4 py-3.5 text-[15px] focus:outline-none text-foreground font-medium"
+                  />
+                </div>
+
+                {/* Prescription Upload */}
+                <div className="flex flex-col gap-2 mt-2">
+                  <label className="text-[13px] font-semibold text-foreground">Upload Prescription (Optional)</label>
+                  <div className="w-full border-2 border-dashed border-primary/40 bg-primary/5 rounded-xl p-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-primary/10 transition-colors">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                      <UploadCloud className="w-5 h-5" />
+                    </div>
+                    <span className="text-[13px] font-semibold text-primary">Tap to upload file</span>
+                    <span className="text-[11px] text-muted-foreground">PDF, JPG or PNG (Max 5MB)</span>
+                  </div>
+                </div>
+
+                <div className="bg-[#ffcc00]/10 border border-[#ffcc00]/30 rounded-xl p-3.5 mt-2 flex items-start gap-3">
+                  <span className="text-xl leading-none">⏱️</span>
+                  <p className="text-[13px] font-medium text-foreground leading-snug">
+                    Get a callback from one of our experts in <strong className="font-bold text-amber-600 dark:text-amber-500">&lt;5 mins</strong>
+                  </p>
+                </div>
+              </div>
+
+              <button 
+                onClick={() => setShowCallbackSheet(false)}
+                className="w-full mt-6 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-[15px] active:scale-[0.98] transition-transform shadow-lg shadow-primary/20"
+              >
+                Submit request
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       <BottomNav />
     </div>
