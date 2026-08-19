@@ -227,22 +227,16 @@ const Home = () => {
                 <div 
                   key={index} 
                   onClick={() => navigate('/test/cbc')}
-                  className="min-w-[160px] max-w-[160px] bg-card rounded-[1.25rem] shadow-card border border-border p-3 flex flex-col snap-start shrink-0 cursor-pointer active:scale-[0.98] transition-transform"
+                  className="min-w-[160px] max-w-[160px] bg-card rounded-[1.25rem] shadow-card border border-border p-3.5 flex flex-col snap-start shrink-0 cursor-pointer active:scale-[0.98] transition-transform justify-between"
                 >
-                  <div className="-mx-1.5 w-[calc(100%+12px)] h-[90px] rounded-xl overflow-hidden mb-3 bg-muted/50 relative">
-                    <img 
-                      src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=300" 
-                      alt="Lab Test" 
-                      className="w-full h-full object-cover opacity-90 mix-blend-multiply dark:mix-blend-normal"
-                    />
+                  <div>
+                    <h3 className="font-bold text-[14px] leading-[1.2] mb-1 line-clamp-2 min-h-[2.4em] text-foreground">
+                      {test.name}
+                    </h3>
+                    <p className="text-[12px] font-medium text-muted-foreground mb-3">
+                      {test.params} Parameter{test.params > 1 ? 's' : ''}
+                    </p>
                   </div>
-                  
-                  <h3 className="font-bold text-[14px] leading-[1.2] mb-1 line-clamp-2 min-h-[2.4em] text-foreground">
-                    {test.name}
-                  </h3>
-                  <p className="text-[12px] font-medium text-muted-foreground mb-2">
-                    {test.params} Parameter{test.params > 1 ? 's' : ''}
-                  </p>
                   
                   <div className="mt-auto">
                     <div className="flex items-center gap-2 mb-3">
