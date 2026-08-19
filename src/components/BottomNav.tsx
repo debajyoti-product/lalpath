@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const tabs = [
-  { icon: Home, label: "Home", path: "/home" },
+  { icon: Home, label: "Home", path: "/" },
   { icon: Search, label: "Search", path: "/search" },
   { icon: ClipboardList, label: "Bookings", path: "/bookings" },
   { icon: User, label: "Account", path: "/account" },
@@ -17,7 +17,7 @@ const BottomNav = () => {
     <div className="fixed left-0 right-0 z-50 flex justify-center px-4 pointer-events-none" style={{ bottom: 'max(24px, env(safe-area-inset-bottom))' }}>
       <nav className="w-full max-w-[358px] bg-white/90 dark:bg-zinc-900/90 backdrop-blur-3xl border border-white/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.08)] rounded-[20px] flex items-center justify-around py-1 px-1.5 pointer-events-auto">
         {tabs.map(({ icon: Icon, label, path }) => {
-          const active = location.pathname === path;
+          const active = location.pathname === path || (path === '/' && location.pathname === '/home');
           return (
             <button
               key={path}
