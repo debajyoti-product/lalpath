@@ -136,25 +136,21 @@ export default function TestDetails() {
         </div>
 
         {/* Patient Selection */}
-        <div className="bg-card rounded-2xl shadow-sm border border-border p-4">
-          <div className="flex justify-between items-center mb-3">
-            <h3 className="font-bold text-[15px] text-foreground">Patient Details</h3>
-          </div>
-          <div 
-            className="flex items-center justify-between bg-muted/50 border border-border/50 rounded-xl p-3 cursor-pointer active:scale-[0.98] transition-all"
-            onClick={() => setShowPatientSheet(true)}
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                <User className="w-5 h-5 text-primary" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-[14px] text-foreground">{selectedPatient}</span>
-                <span className="text-[11px] font-medium text-muted-foreground">Self • Male • 28 Yrs</span>
-              </div>
+        <div 
+          className="bg-card rounded-2xl shadow-sm border border-border p-3.5 flex items-center justify-between cursor-pointer active:scale-[0.99] transition-all"
+          onClick={() => setShowPatientSheet(true)}
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+              <User className="w-4.5 h-4.5 text-primary" />
             </div>
-            <span className="text-[12px] font-bold text-primary px-3 py-1.5 rounded-lg bg-primary/10">Change</span>
+            <div className="flex flex-col">
+              <span className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground mb-0.5">Patient Details</span>
+              <span className="font-bold text-[13.5px] text-foreground leading-tight">{selectedPatient}</span>
+              <span className="text-[11px] font-medium text-muted-foreground">Self • Male • 28 Yrs</span>
+            </div>
           </div>
+          <span className="text-[12px] font-bold text-primary px-3 py-1.5 rounded-lg bg-primary/10 shrink-0">Change</span>
         </div>
 
         {/* Collection Mode */}
