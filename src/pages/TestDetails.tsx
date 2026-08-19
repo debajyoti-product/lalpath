@@ -163,21 +163,34 @@ export default function TestDetails() {
           <div className="flex flex-col gap-3">
             {/* Home Collection Checkbox */}
             <div 
-              className={`flex items-center justify-between p-3.5 rounded-xl border cursor-pointer transition-all ${collectionMode === 'home' ? 'border-[#ffcc00] bg-[#ffcc00]/10 shadow-sm' : 'border-border bg-card hover:bg-muted/30'}`}
+              className={`flex flex-col p-3.5 rounded-xl border cursor-pointer transition-all ${collectionMode === 'home' ? 'border-[#ffcc00] bg-[#ffcc00]/10 shadow-sm' : 'border-border bg-card hover:bg-muted/30'}`}
               onClick={() => setCollectionMode('home')}
             >
-              <div className="flex items-center gap-3">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${collectionMode === 'home' ? 'bg-[#ffcc00]/30 text-amber-600 dark:text-amber-500' : 'bg-muted text-muted-foreground'}`}>
-                  <HomeIcon className="w-5 h-5" />
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${collectionMode === 'home' ? 'bg-[#ffcc00]/30 text-amber-600 dark:text-amber-500' : 'bg-muted text-muted-foreground'}`}>
+                    <HomeIcon className="w-5 h-5" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-bold text-[14px] text-foreground">Home Collection</span>
+                    <span className="text-[12px] font-medium text-muted-foreground leading-tight">Free sample collection by our trained phlebotomists.</span>
+                  </div>
                 </div>
-                <div className="flex flex-col">
-                  <span className="font-bold text-[14px] text-foreground">Home Collection</span>
-                  <span className="text-[12px] font-medium text-muted-foreground leading-tight">Free sample collection by our trained phlebotomists.</span>
+                <div className={`w-5 h-5 rounded-[6px] shrink-0 border-2 flex items-center justify-center ${collectionMode === 'home' ? 'border-primary bg-primary' : 'border-muted-foreground/30'}`}>
+                  {collectionMode === 'home' && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />}
                 </div>
               </div>
-              <div className={`w-5 h-5 rounded-[6px] shrink-0 border-2 flex items-center justify-center ${collectionMode === 'home' ? 'border-primary bg-primary' : 'border-muted-foreground/30'}`}>
-                {collectionMode === 'home' && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />}
-              </div>
+
+              {collectionMode === 'home' && (
+                <div className="mt-3 pt-3 border-t border-amber-500/20 flex items-center justify-between group">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground mb-0.5">Selected Address</span>
+                    <span className="font-bold text-[13px] text-foreground">Block A, Sector 14</span>
+                    <span className="text-[12px] font-medium text-muted-foreground">Gurgaon, Haryana</span>
+                  </div>
+                  <span className="text-[12px] font-bold text-amber-600 dark:text-amber-500 px-3 py-1.5 rounded-lg bg-[#ffcc00]/20 group-active:scale-95 transition-transform shrink-0">Edit</span>
+                </div>
+              )}
             </div>
 
             {/* Lab Visit Checkbox */}
@@ -275,33 +288,20 @@ export default function TestDetails() {
       </div>
 
       {/* Sticky Bottom Bar */}
-      <div className="fixed bottom-0 w-full max-w-[390px] mx-auto bg-card border-t border-border flex flex-col z-40 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]">
-        {collectionMode === 'home' && (
-          <div className="flex items-center justify-between px-4 py-2.5 border-b border-border/50 bg-muted/10">
-            <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                <HomeIcon className="w-3.5 h-3.5 text-primary" />
-              </div>
-              <p className="text-[12px] font-medium text-foreground line-clamp-1">Block A, Sector 14, Gurgaon, Haryana</p>
-            </div>
-            <span className="text-[11px] font-bold text-primary px-2.5 py-1 rounded-md bg-primary/10 active:scale-95 transition-transform cursor-pointer shrink-0">Edit</span>
+      <div className="fixed bottom-0 w-full max-w-[390px] mx-auto bg-card border-t border-border py-3 px-4 pb-4 flex items-center justify-between z-40 shadow-[0_-8px_30px_rgba(0,0,0,0.04)]">
+        <div className="flex flex-col">
+          <div className="flex items-center gap-2 mb-0.5">
+            <span className="font-extrabold text-[18px] text-foreground leading-none">₹599</span>
+            <span className="text-[12px] text-muted-foreground line-through font-medium">₹999</span>
           </div>
-        )}
-        <div className="py-3 px-4 pb-4 flex items-center justify-between">
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2 mb-0.5">
-              <span className="font-extrabold text-[18px] text-foreground leading-none">₹599</span>
-              <span className="text-[12px] text-muted-foreground line-through font-medium">₹999</span>
-            </div>
-            <span className="text-[11px] font-bold text-[#34A853] uppercase tracking-wide">40% OFF</span>
-          </div>
-          <button 
-            onClick={() => setShowSlotSheet(true)}
-            className="bg-primary text-primary-foreground font-bold text-[14px] py-2.5 px-8 rounded-xl active:scale-95 transition-transform shadow-lg shadow-primary/20"
-          >
-            Select slot
-          </button>
+          <span className="text-[11px] font-bold text-[#34A853] uppercase tracking-wide">40% OFF</span>
         </div>
+        <button 
+          onClick={() => setShowSlotSheet(true)}
+          className="bg-primary text-primary-foreground font-bold text-[14px] py-2.5 px-8 rounded-xl active:scale-95 transition-transform shadow-lg shadow-primary/20"
+        >
+          Select slot
+        </button>
       </div>
 
       {/* Slot Selection Sheet */}
